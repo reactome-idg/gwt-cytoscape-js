@@ -49,13 +49,13 @@ public class CytoscapeEntity {
 	 * adds a node to cytoscape
 	 * @param node
 	 */
-	public native void addCytoscapeNode(String node) /*-{
+	public native void addCytoscapeNodes(String nodes) /*-{
 	
 	//convert incoming string to node format
-	var node = $wnd.node = $wnd.JSON.parse(node);
+	var nodes = $wnd.nodes = $wnd.JSON.parse(nodes);
 	
 	//add node to cytoscape
-	cy.add(node);
+	$wnd.cy.add(nodes);
 	
 	}-*/;
 	
@@ -65,35 +65,40 @@ public class CytoscapeEntity {
 	 */
 	public native void removeCytoscapeNode(String node) /*-{
 		var node = cy.$('#'+node);
-		cy.remove(node);
+		$wnd.cy.remove(node);
 	}-*/;
 	
 	/**
 	 * adds an edge to cytoscape
 	 * @param edge
 	 */
-	public native void addCytoscapeEdge(String edge) /*-{
+	public native void addCytoscapeEdge(String edges) /*-{
 	
 	//convert incoming string to node format
-	var edge = $wnd.edge = $wnd.JSON.parse(edge);
+	var edges = $wnd.edges = $wnd.JSON.parse(edges);
 	
 	//add node to cytoscape
-	cy.add(edge);
+	$wnd.cy.add(edges);
 	
+	}-*/;
+	
+	public native void clearCytoscapeGraph() /*-{
+		$wnd.cy.$('edge').remove();
+		$wnd.cy.$('node').remove();
 	}-*/;
 	
 	/**
 	 * call to reset view of cytoscape to position (0,0) and zoom 1
 	 */
 	public native void resetCytoscapeView() /*-{
-		cy.reset();
+		$wnd.cy.reset();
 	}-*/;
 	
 	/**
 	 * fits overall cytoscape display to size of viewport
 	 */
 	public native void fitCytoscape() /*-{
-		cy.fit();
+		$wnd.cy.fit();
 	}-*/;
 	
 	/**
@@ -102,14 +107,14 @@ public class CytoscapeEntity {
 	 * @param zoom
 	 */
 	public native void zoomCytoscape(int zoom) /*-{
-		cy.zoom(zoom);
+		$wnd.cy.zoom(zoom);
 	}-*/;
 	
 	/**
 	 * centers cytoscape viewpoint but does not adjust zoom
 	 */
 	public native void centerCytoscape() /*-{
-		cy.center();
+		$wnd.cy.center();
 	}-*/;
 	
 	/**
@@ -117,7 +122,7 @@ public class CytoscapeEntity {
 	 * @param node
 	 */
 	public native void centerCytoscapeonNode(String node) /*-{
-		cy.center(cy.elements('node[name = "'+node+'"]'));
+		$wnd.cy.center(cy.elements('node[name = "'+node+'"]'));
 	}-*/;
 	
 	/**
