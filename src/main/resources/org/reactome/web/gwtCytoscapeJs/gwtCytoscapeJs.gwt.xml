@@ -13,9 +13,12 @@
   <!-- Other module inherits                                      -->
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='org.reactome.web.gwtCytoscapeJs.client.gwtCytoscapeJs' />
+  <entry-point class='org.reactome.web.gwtCytoscapeJs.client.TestGWTCytoscapeJs' />
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />
-  <source path='shared' />
+  <source path='viewport' />
+  <source path='edges' />
+  <source path='nodes' />
+  <source path='initialize' />
 </module>
