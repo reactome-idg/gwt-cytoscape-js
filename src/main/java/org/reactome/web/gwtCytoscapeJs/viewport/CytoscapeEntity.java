@@ -6,6 +6,14 @@ package org.reactome.web.gwtCytoscapeJs.viewport;
  *
  */
 public class CytoscapeEntity {
+	
+	/**
+	 * Adds listeners defined by JSNI methods
+	 */
+	public void addListeners() {
+		nodeSelected();
+		edgeSelected();
+	}
 
 	/**
 	 * generic class for testing
@@ -23,12 +31,13 @@ public class CytoscapeEntity {
 	}-*/;
 
 	/**
-	 * JSNI to display cytoscape given a JSON string of nodes, edges, and style
+	 * JSNI to display cytoscape given a JSON string of nodes, edges, style, and layout
 	 * @param nodes
 	 * @param edges
 	 * @param style
+	 * @param layout
 	 */
-	public native void cytoscapeInit(String nodes, String edges, String style) /*-{
+	public native void cytoscapeInit(String nodes, String edges, String style, String layout) /*-{
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
@@ -40,7 +49,7 @@ public class CytoscapeEntity {
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = $wnd.nodes;
 	    obj.style = $wnd.styleJSON;
-	    obj.layout = { name: 'cose'};
+	    obj.layout = { name: layout};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    cy.add(edges);
 	}-*/;
@@ -49,7 +58,7 @@ public class CytoscapeEntity {
 	 * adds a node to cytoscape
 	 * @param node
 	 */
-	public native void addCytoscapeNodes(String nodes) /*-{
+	public native void setCytoscapeNodes(String nodes) /*-{
 	
 	//convert incoming string to node format
 	var nodes = $wnd.nodes = $wnd.JSON.parse(nodes);
@@ -72,7 +81,7 @@ public class CytoscapeEntity {
 	 * adds an edge to Cytoscape.js
 	 * @param edge
 	 */
-	public native void addCytoscapeEdge(String edges) /*-{
+	public native void setCytoscapeEdge(String edges) /*-{
 	
 	//convert incoming string to node format
 	var edges = $wnd.edges = $wnd.JSON.parse(edges);
@@ -148,7 +157,7 @@ public class CytoscapeEntity {
 	/**
 	 * console.logs id of selected node. Override to provide access to GWT Java class.
 	 */
-	public native  void nodeSelected() /*-{
+	private native  void nodeSelected() /*-{
 		$wnd.cy.$('node').on('tap', function(evt){
 			console.log('node selected: ' + evt.target.id());
 			//@org.reactome.web.gwtCytoscapeJs.client.TestGWTCytoscapeJs::selected(*)(evt.target.id());
@@ -158,7 +167,7 @@ public class CytoscapeEntity {
 	/**
 	 * console.logs id of selected edge. Override to provide access to GWT Java class.
 	 */
-	public native void edgeSelected() /*-{
+	private native void edgeSelected() /*-{
 		$wnd.cy.$('edge').on('tap', function(evt){
 			console.log('edge selected: ' + evt.target.id());
 		});
