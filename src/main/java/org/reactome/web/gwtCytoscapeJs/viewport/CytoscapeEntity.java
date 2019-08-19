@@ -69,7 +69,7 @@ public class CytoscapeEntity {
 	}-*/;
 	
 	/**
-	 * adds an edge to cytoscape
+	 * adds an edge to Cytoscape.js
 	 * @param edge
 	 */
 	public native void addCytoscapeEdge(String edges) /*-{
@@ -82,27 +82,30 @@ public class CytoscapeEntity {
 	
 	}-*/;
 	
+	/**
+	 * Clears all edges and nodes from Cytoscape.js graph. Nodes and edges are stored in memory by Cytoscape.js for reuse.
+	 */
 	public native void clearCytoscapeGraph() /*-{
 		$wnd.cy.$('edge').remove();
 		$wnd.cy.$('node').remove();
 	}-*/;
 	
 	/**
-	 * call to reset view of cytoscape to position (0,0) and zoom 1
+	 * call to reset view of Cytoscape.js to position (0,0) and zoom 1
 	 */
 	public native void resetCytoscapeView() /*-{
 		$wnd.cy.reset();
 	}-*/;
 	
 	/**
-	 * fits overall cytoscape display to size of viewport
+	 * fits overall Cytoscape.Js display to size of viewport
 	 */
 	public native void fitCytoscape() /*-{
 		$wnd.cy.fit();
 	}-*/;
 	
 	/**
-	 * call to adjust zoom of cytoscape viewport. Zoom must be a positive integer
+	 * call to adjust zoom of Cytoscape.js viewport. Zoom must be a positive integer
 	 * reset by passing in int zoom = 1;
 	 * @param zoom
 	 */
@@ -111,7 +114,24 @@ public class CytoscapeEntity {
 	}-*/;
 	
 	/**
-	 * centers cytoscape viewpoint but does not adjust zoom
+	 * pan methods will pan in a given direction specified by an int of pixels.
+	 * @param px
+	 */
+	public native void panUp(int px) /*-{
+		cy.panBy({x:0, y:px});
+	}-*/;
+	public native void panDown(int px) /*-{
+		cy.panBy({x:0, y:(1-px)});
+	}-*/;
+	public native void panLeft(int px) /*-{
+		cy.panBy({x:(1-px), y:0});
+	}-*/;
+	public native void panRight(int px) /*-{
+		cy.panBy({x:px, y:0});
+	}-*/;
+	
+	/**
+	 * centers Cytoscape.js viewpoint but does not adjust zoom
 	 */
 	public native void centerCytoscape() /*-{
 		$wnd.cy.center();
