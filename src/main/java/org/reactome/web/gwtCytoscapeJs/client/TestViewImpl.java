@@ -1,6 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
-import org.reactome.web.gwtCytoscapeJs.initialize.CytoscapeInitializer;
+import org.reactome.web.gwtCytoscapeJs.viewport.CytoscapeEntity;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,9 +11,17 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * 
+ * @author brunsont
+ *
+ */
 public class TestViewImpl extends Composite implements TestView{
 	private Button staticPath;
 	
+	/**
+	 * constructor to create widget
+	 */
 	public TestViewImpl() {
 		  DockLayoutPanel view = new DockLayoutPanel(Unit.PX);
 			SimplePanel panel = new SimplePanel();
@@ -27,17 +35,20 @@ public class TestViewImpl extends Composite implements TestView{
 			bind();
 	}
 	
+	/**
+	 * Add click handlers
+	 */
 	public void bind() {
 		staticPath.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				//using real data
-//			cy = new CytoscapeInitializer();
-			CytoscapeInitializer.cytoscapeInit();
+			CytoscapeEntity cy = new CytoscapeEntity();
+			cy.cytoscapeInit();
+			cy.nodeSelected();
+			cy.edgeSelected();
 		}
 	});
 }
-
 
 	@Override
 	public Widget asWidget() {
