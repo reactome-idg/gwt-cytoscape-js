@@ -8,7 +8,7 @@ public class TestGWTCytoscapeJs implements EntryPoint{
 
 	  public void onModuleLoad() {
 		
-		 TestViewImpl view = new TestViewImpl();
+		 TestView view = new TestView();
 		 RootPanel.get().add(view);		  
 	  }
 	  
