@@ -25,7 +25,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class TestView extends Composite implements IsWidget {
 	private Button staticPath;
-	
+	private CytoscapeWrapper cy;
 	private EventBus eventBus;
 	
 	public TestView(EventBus eventBus) {
@@ -69,7 +69,7 @@ public class TestView extends Composite implements IsWidget {
 		staticPath.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				CytoscapeWrapper cy = new CytoscapeWrapper(eventBus);
+				cy = new CytoscapeWrapper(eventBus);
 				cy.cytoscapeInit();
 			}
 		});
