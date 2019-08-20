@@ -5,15 +5,8 @@ package org.reactome.web.gwtCytoscapeJs.client;
  * @author brunsont
  *
  */
-public class CytoscapeEntity {
+public class CytoscapeWrapper {
 	
-	/**
-	 * Adds listeners defined by JSNI methods
-	 */
-	public CytoscapeEntity() {
-		linkNodeSelected();
-		linkEdgeSelected();
-	}
 
 	/**
 	 * generic class for testing
@@ -28,6 +21,11 @@ public class CytoscapeEntity {
 					'target-arrow-shape': 'triangle' } } ];
 	    obj.layout = { name: 'cose'};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
+	    
+	    //setup link node and edge selectors
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
+	    
 	}-*/;
 
 	/**
@@ -52,6 +50,10 @@ public class CytoscapeEntity {
 	    obj.layout = { name: layout};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    cy.add(edges);
+	    
+	   	//setup link node and edge selectors
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
 	}-*/;
 	
 	/**
@@ -95,8 +97,8 @@ public class CytoscapeEntity {
 	 * Clears all edges and nodes from Cytoscape.js graph. Nodes and edges are stored in memory by Cytoscape.js for reuse.
 	 */
 	public native void clearCytoscapeGraph() /*-{
-		$wnd.cy.$('edge').remove();
-		$wnd.cy.$('node').remove();
+		$wnd.cy.elements('edge').remove();
+		$wnd.cy.elements('node').remove();
 	}-*/;
 	
 	/**
@@ -157,8 +159,8 @@ public class CytoscapeEntity {
 	/**
 	 * console.logs id of selected node. Override to provide access to GWT Java class.
 	 */
-	private native  void linkNodeSelected() /*-{
-		$wnd.cy.$('node').on('tap', function(evt){
+	public native void linkNodeSelected() /*-{
+		$wnd.cy.elements('node').on('tap', function(evt){
 			console.log('node selected: ' + evt.target.id());
 			//@org.reactome.web.gwtCytoscapeJs.client.TestGWTCytoscapeJs::selected(*)(evt.target.id());
 		});
@@ -168,7 +170,7 @@ public class CytoscapeEntity {
 	 * console.logs id of selected edge. Override to provide access to GWT Java class.
 	 */
 	private native void linkEdgeSelected() /*-{
-		$wnd.cy.$('edge').on('tap', function(evt){
+		$wnd.cy.elements('edge').on('tap', function(evt){
 			console.log('edge selected: ' + evt.target.id());
 		});
 	}-*/;

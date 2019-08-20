@@ -1,4 +1,6 @@
-package org.reactome.web.gwtCytoscapeJs.client;
+package org.reactome.web.gwtCytoscapeJs.test;
+
+import org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -41,9 +43,8 @@ public class TestView extends Composite implements IsWidget {
 		staticPath.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-			CytoscapeEntity cy = new CytoscapeEntity();
+			CytoscapeWrapper cy = new CytoscapeWrapper();
 			cy.cytoscapeInit();
-			cy.addListeners();
 		}
 	});
 }

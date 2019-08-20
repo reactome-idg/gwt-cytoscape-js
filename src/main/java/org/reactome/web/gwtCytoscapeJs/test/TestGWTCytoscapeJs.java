@@ -1,4 +1,4 @@
-package org.reactome.web.gwtCytoscapeJs.client;
+package org.reactome.web.gwtCytoscapeJs.test;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Window;
