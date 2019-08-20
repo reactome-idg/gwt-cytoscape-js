@@ -13,7 +13,6 @@ public class CytoscapeWrapper {
 	 */
 	public native void cytoscapeInit() /*-{
 		var obj = new $wnd.Object();
-		console.log($wnd.glyElements);
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = $wnd.glyElements;
 	    obj.style = [ { selector: 'node', style: { 'background-color': '#666', 'label': 'data(id)' } }, 
@@ -61,12 +60,15 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	public native void addCytoscapeNodes(String nodes) /*-{
-	
+	console.log(nodes);
 	//convert incoming string to node format
-	var nodes = $wnd.nodes = $wnd.JSON.parse(nodes);
+	var nodes = $wnd.JSON.parse(nodes);
 	
 	//add node to cytoscape
 	$wnd.cy.add(nodes);
+	
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
 	
 	}-*/;
 	
@@ -90,6 +92,9 @@ public class CytoscapeWrapper {
 	
 	//add node to cytoscape
 	$wnd.cy.add(edges);
+	
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
 	
 	}-*/;
 	
@@ -153,7 +158,7 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	public native void centerCytoscapeonNode(String node) /*-{
-		$wnd.cy.center(cy.elements('node[name = "'+node+'"]'));
+		$wnd.cy.center($wnd.cy.elements('#'+node));
 	}-*/;
 	
 	/**
