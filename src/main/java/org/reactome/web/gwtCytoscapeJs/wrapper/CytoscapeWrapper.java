@@ -1,4 +1,4 @@
-package org.reactome.web.gwtCytoscapeJs.client;
+package org.reactome.web.gwtCytoscapeJs.wrapper;
 
 /**
  * 

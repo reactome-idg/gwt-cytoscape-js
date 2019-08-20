@@ -17,9 +17,8 @@
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />
-  <source path='viewport' />
-  <source path='edges' />
-  <source path='nodes' />
-  <source path='initialize' />
+  <source path='events' />
+  <source path='handlers' />
   <source path='test' />
+  <source path='util' />
 </module>
