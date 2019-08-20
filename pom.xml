@@ -12,7 +12,7 @@
   <name>Maven Archetype for GWT</name>
 
   <description>
-  	A GWT widget to display pathway functional interactions using cytoscape.js
+  	A GWT wrapper for Cytoscape.js
   </description>
 
   <organization>
