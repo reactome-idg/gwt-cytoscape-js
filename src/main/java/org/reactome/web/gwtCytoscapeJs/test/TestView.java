@@ -42,23 +42,18 @@ public class TestView extends Composite implements IsWidget {
 		bind();
 		
 		
-		
+		//register eventBus handlers
 		eventBus.addHandler(NodeClickedEvent.TYPE, new NodeClickedHandler() {
-
 			@Override
 			public void onNodeClicked(NodeClickedEvent event) {
-				Window.alert("Node Clicked");
-				
+				Window.alert(event.toString());
 			}
 		});
 		eventBus.addHandler(EdgeClickedEvent.TYPE, new EdgeClickedHandler() {
-
 			@Override
 			public void onEdgeClicked(EdgeClickedEvent event) {
-				Window.alert("Edge Clicked");
-				
+				Window.alert(event.toString());
 			}
-			
 		});
 	}
 	

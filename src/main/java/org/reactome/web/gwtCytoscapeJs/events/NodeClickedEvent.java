@@ -3,20 +3,23 @@ package org.reactome.web.gwtCytoscapeJs.events;
 import org.reactome.web.gwtCytoscapeJs.handlers.NodeClickedHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.user.client.Window;
 
+/**
+ * @author brunsont
+ */
 public class NodeClickedEvent extends GwtEvent<NodeClickedHandler>{
     public static Type<NodeClickedHandler> TYPE = new Type<>();
 
-    private String nodeAccession;
+    private String nodeId;
 
-    public NodeClickedEvent(String nodeAccession) {
-        this.nodeAccession = nodeAccession;
+    public NodeClickedEvent(String nodeId) {
+        this.nodeId = nodeId;
     }
     
 	@Override
 	public Type<NodeClickedHandler> getAssociatedType() {
-		// TODO Auto-generated method stub
-		return null;
+		return TYPE;
 	}
 
 	@Override
@@ -25,16 +28,14 @@ public class NodeClickedEvent extends GwtEvent<NodeClickedHandler>{
 		
 	}
 	
-	public String getNodeAccession() {
-		return nodeAccession;
+	public String getNodeId() {
+		return nodeId;
 	}
 	
     @Override
     public String toString() {
-        return "GraphLoadedEvent{" +
-                " content= " + getNodeAccession() 
-                + " "
-                + '}';
+        return "NodeClickedEvent{" +
+                "content=" + getNodeId() + "}";
     }
 
 }

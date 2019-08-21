@@ -2,8 +2,10 @@ package org.reactome.web.gwtCytoscapeJs.client;
 
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
+import org.reactome.web.gwtCytoscapeJs.util.Console;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 
 /**
  * 
@@ -177,7 +179,6 @@ public class CytoscapeWrapper {
 	public native void linkNodeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
-			console.log('node selected: ' + evt.target.id());
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id());
 		});
 	}-*/;
@@ -188,7 +189,6 @@ public class CytoscapeWrapper {
 	private native void linkEdgeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){
-			console.log('edge selected: ' + evt.target.id());
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(evt.target.id());
 		});
 	}-*/;

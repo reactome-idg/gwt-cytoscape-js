@@ -34,10 +34,8 @@ public class EdgeClickedEvent extends GwtEvent<EdgeClickedHandler>{
 	
 	@Override
 	public String toString() {
-		return "GraphLoadedEvent{" +
-                "time=" + 
-                ", content= " + getEdgeId() + " "
-                + '}';
+		return "EdgeClickedEvent{" +
+                "content=" + getEdgeId() + "}";
 	}
 
 }
