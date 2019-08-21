@@ -23,13 +23,14 @@ public class CytoscapeWrapper {
 	/**
 	 * generic class for testing
 	 */
-	public native void cytoscapeInit() /*-{
+	public native void cytoscapeInit(String style) /*-{
 		var obj = new $wnd.Object();
+		
+		var styleJSON = $wnd.JSON.parse(style);
+		
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = $wnd.glyElements;
-	    obj.style = [ { selector: 'node', style: { 'background-color': '#666', 'label': 'data(id)' } }, 
-	            { selector: 'edge', style: { 'width': 3, 'line-color': '#ccc', 'target-arrow-color': '#ccc',
-					'target-arrow-shape': 'triangle' } } ];
+	    obj.style = styleJSON;
 	    obj.layout = { name: 'cose'};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    
@@ -173,8 +174,10 @@ public class CytoscapeWrapper {
 		$wnd.cy.center($wnd.cy.elements('#'+node));
 	}-*/;
 	
-	public native void highlightSelectedEdgeGroup(String node) /*-{
-		$wnd.cy.style().selector('edge[target = "4"], edge[source="4"]').style({'line-color': 'red'}).update();
+	public native void highlightSelectedEdgeGroup(String node, String baseStyle) /*-{
+		var styleJSON = $wnd.JSON.parse(baseStyle);
+		$wnd.cy.style().fromJson(styleJSON).update();
+		$wnd.cy.style().selector('edge[target = "'+node+'"], edge[source="'+node+'"]').style({'line-color': 'red'}).update();
 	}-*/;
 	
 	/**

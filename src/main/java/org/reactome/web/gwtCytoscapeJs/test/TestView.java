@@ -1,5 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.test;
 
+import org.reactome.web.gwtCytoscapeJs.client.clientBundle.Resources;
 import org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
@@ -44,11 +45,11 @@ public class TestView extends Composite implements IsWidget {
 		bind();
 		
 		
-		//register eventBus handlers
+		//register eventBus handlers & override action methods
 		eventBus.addHandler(NodeClickedEvent.TYPE, new NodeClickedHandler() {
 			@Override
 			public void onNodeClicked(NodeClickedEvent event) {
-				cy.highlightSelectedEdgeGroup(event.getNodeId());
+				cy.highlightSelectedEdgeGroup(event.getNodeId(), Resources.INSTANCE.cytoscapeStyle().getText());
 			}
 
 		});
@@ -59,11 +60,6 @@ public class TestView extends Composite implements IsWidget {
 			}
 		});
 	}
-	
-	protected void setHighlight(String node) {
-		cy.highlightSelectedEdgeGroup(node);
-		
-	}
 
 	/**
 	 * Add click handler
@@ -72,7 +68,7 @@ public class TestView extends Composite implements IsWidget {
 		staticPath.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				cy.cytoscapeInit();
+				cy.cytoscapeInit(Resources.INSTANCE.cytoscapeStyle().getText());
 			}
 		});
 	}	
