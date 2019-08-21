@@ -173,6 +173,10 @@ public class CytoscapeWrapper {
 		$wnd.cy.center($wnd.cy.elements('#'+node));
 	}-*/;
 	
+	public native void highlightSelectedEdgeGroup(String node) /*-{
+		$wnd.cy.style().selector('edge[target = "4"], edge[source="4"]').style({'line-color': 'red'}).update();
+	}-*/;
+	
 	/**
 	 * console.logs id of selected node. Override to provide access to GWT Java class.
 	 */
