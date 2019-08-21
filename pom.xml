@@ -5,9 +5,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.reactome.web.gwtCytoscapeJs</groupId>
+  <groupId>org.reactome.web</groupId>
   <artifactId>gwtCytoscapeJs</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>Maven Archetype for GWT</name>
 
