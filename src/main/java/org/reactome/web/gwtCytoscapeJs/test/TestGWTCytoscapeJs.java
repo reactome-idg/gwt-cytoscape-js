@@ -1,5 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.test;
 
+import org.reactome.web.gwtCytoscapeJs.client.CytoscapeViewer;
 import org.reactome.web.gwtCytoscapeJs.util.CytoscapeEventBus;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -13,11 +14,7 @@ public class TestGWTCytoscapeJs implements EntryPoint{
 		
 		 EventBus eventBus = new CytoscapeEventBus();
 		  
-		 TestView view = new TestView(eventBus);
+		 CytoscapeViewer view = new CytoscapeViewer(eventBus);
 		 RootPanel.get().add(view);		  
-	  }
-	  
-	  public static void selected(String node) {
-		  Window.alert("node selected" + node);
 	  }
 }

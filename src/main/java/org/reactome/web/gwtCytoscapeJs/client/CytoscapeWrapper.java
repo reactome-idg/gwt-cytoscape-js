@@ -90,7 +90,7 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	public native void removeCytoscapeNode(String node) /*-{
-		var node = cy.$('#'+node);
+		var node = $wnd.cy.$('#'+node);
 		$wnd.cy.remove(node);
 	}-*/;
 	
@@ -147,16 +147,16 @@ public class CytoscapeWrapper {
 	 * @param px
 	 */
 	public native void panUp(int px) /*-{
-		cy.panBy({x:0, y:px});
+		$wnd.cy.panBy({x:0, y:px});
 	}-*/;
 	public native void panDown(int px) /*-{
-		cy.panBy({x:0, y:(1-px)});
+		$wnd.cy.panBy({x:0, y:(1-px)});
 	}-*/;
 	public native void panLeft(int px) /*-{
-		cy.panBy({x:(1-px), y:0});
+		$wnd.cy.panBy({x:(1-px), y:0});
 	}-*/;
 	public native void panRight(int px) /*-{
-		cy.panBy({x:px, y:0});
+		$wnd.cy.panBy({x:px, y:0});
 	}-*/;
 	
 	/**
@@ -171,7 +171,7 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	public native void centerCytoscapeonNode(String node) /*-{
-		$wnd.cy.center($wnd.cy.elements('#'+node));
+		$wnd.cy.center($wnd.cy.$('#'+node));
 	}-*/;
 	
 	public native void highlightSelectedEdgeGroup(String node, String baseStyle) /*-{
