@@ -175,9 +175,10 @@ public class CytoscapeWrapper {
 	 * console.logs id of selected node. Override to provide access to GWT Java class.
 	 */
 	public native void linkNodeSelected() /*-{
+		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			console.log('node selected: ' + evt.target.id());
-			this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)();
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id());
 		});
 	}-*/;
 	
@@ -185,26 +186,27 @@ public class CytoscapeWrapper {
 	 * console.logs id of selected edge. Override to provide access to GWT Java class.
 	 */
 	private native void linkEdgeSelected() /*-{
+		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){
 			console.log('edge selected: ' + evt.target.id());
-			this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)();
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(evt.target.id());
 		});
 	}-*/;
 	
 	/**
 	 * Called by JSNI to fire node clicked event
 	 * @param node
-	 */
-	private void fireNodeClickedEvent() {
-		eventBus.fireEventFromSource(new NodeClickedEvent("node"), this);
+	 */ 
+	private void fireNodeClickedEvent(String node) { 
+		eventBus.fireEventFromSource(new NodeClickedEvent(node), this);
 	}
 	
 	/**
 	 * Called by JSNI to fire edge clicked event
 	 * @param edge
 	 */
-	private void fireEdgeClickedEvent() {
-		eventBus.fireEventFromSource(new EdgeClickedEvent("edge"), this);
+	private void fireEdgeClickedEvent(String edge) {
+		eventBus.fireEventFromSource(new EdgeClickedEvent(edge), this);
 	}
 	
 }
