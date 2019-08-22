@@ -51,6 +51,16 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  
+  <profiles>
+	  <profile>
+	      <id>dev</id>
+	      <properties>
+	          <appModule>org.reactome.web.WidgetTest</appModule>
+	          <appName>widgettest</appName>
+	      </properties>
+	  </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
