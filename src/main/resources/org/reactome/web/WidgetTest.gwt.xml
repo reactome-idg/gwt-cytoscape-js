@@ -4,7 +4,7 @@
   <inherits name='com.google.gwt.user.User' />
   <inherits name='com.google.gwt.json.JSON'/>
   
-  <inherits name='org.reactome.web.gwtCytoscapeJs.gwtCytoscapeJs' />
+  <inherits name='org.reactome.web.gwtCytoscapeJs.GWTCyJs' />
   
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
@@ -19,9 +19,6 @@
   <entry-point class='org.reactome.web.gwtCytoscapeJs.test.TestGWTCytoscapeJs' />
 
   <!-- Specify the paths for translatable code                    -->
-  <source path='client' />
-  <source path='events' />
-  <source path='handlers' />
   <source path='test' />
-  <source path='util' />
+  <source path='gwtCytoscapeJs' />
 </module>
