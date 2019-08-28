@@ -220,7 +220,6 @@ public class CytoscapeWrapper {
 			var node = evt.target;
 			var x = node.position().x + '';
 			var y = node.position().y + '';
-			console.log(x);
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), x, y);
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
