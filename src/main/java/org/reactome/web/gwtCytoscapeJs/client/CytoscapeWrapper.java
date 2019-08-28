@@ -35,8 +35,8 @@ public class CytoscapeWrapper {
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    
 	    //setup link node and edge selectors
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	    
 	}-*/;
 
@@ -64,8 +64,8 @@ public class CytoscapeWrapper {
 	    cy.add(edges);
 	    
 	   	//setup link node and edge selectors
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	}-*/;
 	
 	/**
@@ -80,8 +80,8 @@ public class CytoscapeWrapper {
 	//add node to cytoscape
 	$wnd.cy.add(nodes);
 	
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	
 	}-*/;
 	
@@ -106,8 +106,8 @@ public class CytoscapeWrapper {
 	//add node to cytoscape
 	$wnd.cy.add(edges);
 	
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkNodeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::linkEdgeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	
 	}-*/;
 	
@@ -181,9 +181,9 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
-	 * console.logs id of selected node. Override to provide access to GWT Java class.
+	 * Fires NodeClickedEvent with id of node selected.
 	 */
-	public native void linkNodeSelected() /*-{
+	private native void nodeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id());
@@ -191,9 +191,9 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
-	 * console.logs id of selected edge. Override to provide access to GWT Java class.
+	 * Fires EdgeClickedEvent with id of edge selected.
 	 */
-	private native void linkEdgeSelected() /*-{
+	private native void edgeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(evt.target.id());
