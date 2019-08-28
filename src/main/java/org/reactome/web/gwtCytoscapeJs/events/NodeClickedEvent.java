@@ -12,11 +12,23 @@ public class NodeClickedEvent extends GwtEvent<NodeClickedHandler>{
     public static Type<NodeClickedHandler> TYPE = new Type<>();
 
     private String nodeId;
+    private String xCoordinate;
+    private String yCoordinate;
 
-    public NodeClickedEvent(String nodeId) {
+    public NodeClickedEvent(String nodeId, String xCoordinate, String yCoordinate) {
         this.nodeId = nodeId;
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
     }
     
+	public String getxCoordinate() {
+		return xCoordinate;
+	}
+
+	public String getyCoordinate() {
+		return yCoordinate;
+	}
+
 	@Override
 	public Type<NodeClickedHandler> getAssociatedType() {
 		return TYPE;

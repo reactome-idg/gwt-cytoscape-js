@@ -3,6 +3,7 @@ package org.reactome.web.gwtCytoscapeJs.client;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
+import org.reactome.web.gwtCytoscapeJs.events.NodeMouseOutEvent;
 import org.reactome.web.gwtCytoscapeJs.util.Console;
 
 import com.google.gwt.event.shared.EventBus;
@@ -193,7 +194,10 @@ public class CytoscapeWrapper {
 	private native void nodeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id());
+			var node = evt.target;
+			var x = node.position().x + '';
+			var y = node.position().y + '';
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id(), x, y);
 		});
 	}-*/;
 	
@@ -213,7 +217,14 @@ public class CytoscapeWrapper {
 	private native void nodeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('mouseover', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id());
+			var node = evt.target;
+			var x = node.position().x + '';
+			var y = node.position().y + '';
+			console.log(x);
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), x, y);
+		});
+		$wnd.cy.elements('node').on('mouseout', function(evt){
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOut(*)();
 		});
 	}-*/;
 	
@@ -221,8 +232,8 @@ public class CytoscapeWrapper {
 	 * Called by JSNI to fire node clicked event
 	 * @param node
 	 */ 
-	private void fireNodeClickedEvent(String node) { 
-		eventBus.fireEventFromSource(new NodeClickedEvent(node), this);
+	private void fireNodeClickedEvent(String node, String x, String y) { 
+		eventBus.fireEventFromSource(new NodeClickedEvent(node, x, y), this);
 	}
 	
 	/**
@@ -237,8 +248,12 @@ public class CytoscapeWrapper {
 	 * Called by JSNI to fire node hovered event
 	 * @param node
 	 */
-	private void fireNodeHoveredEvent(String node) {
-		eventBus.fireEventFromSource(new NodeHoveredEvent(node), this);
+	private void fireNodeHoveredEvent(String node, String x, String y) {
+		eventBus.fireEventFromSource(new NodeHoveredEvent(node, x, y), this);
+	}
+	
+	private void fireNodeMouseOutEvent() {
+		eventBus.fireEventFromSource(new NodeMouseOutEvent(), this);
 	}
 	
 }
