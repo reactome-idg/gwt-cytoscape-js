@@ -2,6 +2,7 @@ package org.reactome.web.gwtCytoscapeJs.client;
 
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
+import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.util.Console;
 
 import com.google.gwt.event.shared.EventBus;
@@ -37,6 +38,7 @@ public class CytoscapeWrapper {
 	    //setup link node and edge selectors
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	    
 	}-*/;
 
@@ -66,6 +68,8 @@ public class CytoscapeWrapper {
 	   	//setup link node and edge selectors
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
+	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	    
 	}-*/;
 	
 	/**
@@ -82,6 +86,8 @@ public class CytoscapeWrapper {
 	
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	
 	
 	}-*/;
 	
@@ -108,6 +114,7 @@ public class CytoscapeWrapper {
 	
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	
 	}-*/;
 	
@@ -201,6 +208,16 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
+	 * Fires NodeHoveredEvent with id of node hovered on.
+	 */
+	private native void nodeHovered() /*-{
+		var that = this;
+		$wnd.cy.elements('node').on('mouseover', function(evt){
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id());
+		});
+	}-*/;
+	
+	/**
 	 * Called by JSNI to fire node clicked event
 	 * @param node
 	 */ 
@@ -214,6 +231,14 @@ public class CytoscapeWrapper {
 	 */
 	private void fireEdgeClickedEvent(String edge) {
 		eventBus.fireEventFromSource(new EdgeClickedEvent(edge), this);
+	}
+	
+	/**
+	 * Called by JSNI to fire node hovered event
+	 * @param node
+	 */
+	private void fireNodeHoveredEvent(String node) {
+		eventBus.fireEventFromSource(new NodeHoveredEvent(node), this);
 	}
 	
 }
