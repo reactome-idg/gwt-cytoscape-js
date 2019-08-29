@@ -4,10 +4,8 @@ import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeMouseOutEvent;
-import org.reactome.web.gwtCytoscapeJs.util.Console;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 
 /**
  * 
@@ -191,7 +189,7 @@ public class CytoscapeWrapper {
 	/**
 	 * Fires NodeClickedEvent with id of node selected.
 	 */
-	private native void nodeSelected() /*-{
+	protected native void nodeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			var node = evt.target;
@@ -204,7 +202,7 @@ public class CytoscapeWrapper {
 	/**
 	 * Fires EdgeClickedEvent with id of edge selected.
 	 */
-	private native void edgeSelected() /*-{
+	protected native void edgeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(evt.target.id());
@@ -214,7 +212,7 @@ public class CytoscapeWrapper {
 	/**
 	 * Fires NodeHoveredEvent with id of node hovered on.
 	 */
-	private native void nodeHovered() /*-{
+	protected native void nodeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('mouseover', function(evt){
 			var node = evt.target;
