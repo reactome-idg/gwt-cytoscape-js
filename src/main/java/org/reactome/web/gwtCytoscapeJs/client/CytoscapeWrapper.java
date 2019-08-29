@@ -223,7 +223,7 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), x, y);
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOut(*)();
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
 		});
 	}-*/;
 	
@@ -251,6 +251,9 @@ public class CytoscapeWrapper {
 		eventBus.fireEventFromSource(new NodeHoveredEvent(node, x, y), this);
 	}
 	
+	/**
+	 * Called when mouse leaves a node area
+	 */
 	private void fireNodeMouseOutEvent() {
 		eventBus.fireEventFromSource(new NodeMouseOutEvent(), this);
 	}
