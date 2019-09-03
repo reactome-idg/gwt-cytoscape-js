@@ -25,6 +25,7 @@ public class CytoscapeWrapper {
 	 */
 	public native void cytoscapeInit(String style) /*-{
 		var obj = new $wnd.Object();
+		var zoom = $doc.zoom = 1;
 		
 		var styleJSON = $wnd.JSON.parse(style);
 		
@@ -53,6 +54,8 @@ public class CytoscapeWrapper {
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
+		var zoom = $doc.zoom = 1;
+		
 		
 		var nodes = $wnd.JSON.parse(nodes);
 		var edges = $wnd.JSON.parse(edges);
@@ -149,8 +152,17 @@ public class CytoscapeWrapper {
 	 * reset by passing in int zoom = 1;
 	 * @param zoom
 	 */
-	public native void zoomCytoscape(int zoom) /*-{
-		$wnd.cy.zoom(zoom);
+	public native void zoomCytoscape(int zoomBy) /*-{
+		if($doc.zoom > 1){
+			$doc.zoom += zoomBy;
+			$wnd.cy.zoom($doc.zoom);
+		} else if($doc.zoom == 1 && zoomBy != -1){
+			$wnd.cy.zoom($doc.zoom);
+		} else{
+			$doc.zoom = 1;
+			$wnd.cy.zoom($doc.zoom);
+		}
+		
 	}-*/;
 	
 	/**
