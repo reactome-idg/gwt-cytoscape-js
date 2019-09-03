@@ -38,6 +38,7 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
 	    
 	}-*/;
 
@@ -68,6 +69,8 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	   	
 	    
 	}-*/;
 	
@@ -86,6 +89,7 @@ public class CytoscapeWrapper {
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
 	
 	
 	}-*/;
@@ -114,6 +118,7 @@ public class CytoscapeWrapper {
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
 	
 	}-*/;
 	
@@ -224,6 +229,10 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
 		});
 	}-*/;
+	
+	
+	//Fires node hovered event
+	protected native void edgeHovered() /*-{}-*/;
 	
 	/**
 	 * Called by JSNI to fire node clicked event
