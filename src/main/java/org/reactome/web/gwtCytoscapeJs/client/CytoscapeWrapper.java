@@ -41,6 +41,8 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
 	    
+	   	$wnd.cy.zoom(zoom);
+	    
 	}-*/;
 
 	/**
@@ -66,13 +68,16 @@ public class CytoscapeWrapper {
 	    obj.style = styleJSON;
 	    obj.layout = { name: layout};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
-	    cy.add(edges);
+	    cy.add(edges);	    
 	    
 	   	//setup link node and edge selectors
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	   	
+	   	$wnd.cy.zoom(zoom);
+	   	
 	   	
 	    
 	}-*/;
@@ -153,13 +158,14 @@ public class CytoscapeWrapper {
 	 * @param zoom
 	 */
 	public native void zoomCytoscape(int zoomBy) /*-{
-		if($doc.zoom > 1){
-			$doc.zoom += zoomBy;
-			$wnd.cy.zoom($doc.zoom);
-		} else if($doc.zoom == 1 && zoomBy != -1){
-			$wnd.cy.zoom($doc.zoom);
-		} else{
+		if($doc.zoom == 1 && zoomBy == -1){
 			$doc.zoom = 1;
+			$wnd.cy.zoom($doc.zoom);
+		} else if(zoomBy == -1){
+			$doc.zoom--;
+			$wnd.cy.zoom($doc.zoom);
+		} else if(zoomBy == 1){
+			$doc.zoom++;
 			$wnd.cy.zoom($doc.zoom);
 		}
 		
