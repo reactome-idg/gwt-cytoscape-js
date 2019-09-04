@@ -28,18 +28,31 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 	private CytoscapeWrapper cy;
 	private EventBus eventBus;
 	
+	private Button btn;
+	
 	public CytoscapeViewer(EventBus eventBus) {
 		this.eventBus = eventBus;
 		cy = new CytoscapeWrapper(eventBus);
-
-		SimplePanel panel = new SimplePanel();
-		panel.getElement().setId("cy");
-		initWidget(panel);
-		
+	
+		initialize();
 		//init handlers and button click events
 		initHandlers();
 	}
+	
+	private void initialize() {
+		DockLayoutPanel view = new DockLayoutPanel(Unit.PX);
 
+		SimplePanel panel = new SimplePanel();
+		panel.getElement().setId("cy");
+		
+		btn = new Button("Test Button");
+		
+		view.addNorth(btn, 12);
+		view.add(panel);
+		view.setSize("100", "100");
+		view.forceLayout();
+		initWidget(view);
+	}
 	
 	private void initHandlers() {
 
@@ -58,8 +71,7 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 
 	@Override
 	public Widget asWidget() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 }
