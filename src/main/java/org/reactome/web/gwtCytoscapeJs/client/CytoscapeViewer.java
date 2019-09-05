@@ -34,12 +34,12 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 		this.eventBus = eventBus;
 		cy = new CytoscapeWrapper(eventBus);
 	
-		initialize();
+		initialise();
 		//init handlers and button click events
 		initHandlers();
 	}
 	
-	private void initialize() {
+	private void initialise() {
 		DockLayoutPanel view = new DockLayoutPanel(Unit.PX);
 
 		SimplePanel panel = new SimplePanel();
