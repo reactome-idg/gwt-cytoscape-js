@@ -5,4 +5,9 @@
 
 <web-app>
 
+    <!-- Default Page to Serve -->
+	<welcome-file-list>
+		<welcome-file>gwtCytoscapeJs.html</welcome-file>
+	</welcome-file-list>
+
 </web-app>
