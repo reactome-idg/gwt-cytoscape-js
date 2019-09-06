@@ -269,7 +269,7 @@ public class CytoscapeWrapper {
 	 * Pass in the JSON of the desired style as a string.
 	 * @param BaseStyle
 	 */
-	protected native void resetStyle(String BaseStyle) /*-{
+	protected native void setStyle(String BaseStyle) /*-{
 		var styleJSON = $wnd.JSON.parse(baseStyle);
 		$wnd.cy.style().fromJson(styleJSON).update();
 	}-*/;
