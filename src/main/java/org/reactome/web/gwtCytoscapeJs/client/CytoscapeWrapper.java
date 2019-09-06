@@ -253,6 +253,27 @@ public class CytoscapeWrapper {
 		});
 	}-*/;
 	
+	/**
+	 * sets layout equal to passed in string.
+	 * String options include: "random", "grid", "circle", "concentric", "breadthfirst", and "cose".
+	 * The layout, "preset" can also be used if node locations are specified manually.
+	 * @param layoutString
+	 */
+	protected native void setLayout(String layoutString) /*-{
+		var layout = $wnd.cy.layout({name: '' + layoutString + ''});
+		layout.run();
+	}-*/;
+	
+	/**
+	 * This method resets the style of the Cytoscape.js canvas. 
+	 * Pass in the JSON of the desired style as a string.
+	 * @param BaseStyle
+	 */
+	protected native void resetStyle(String BaseStyle) /*-{
+		var styleJSON = $wnd.JSON.parse(baseStyle);
+		$wnd.cy.style().fromJson(styleJSON).update();
+	}-*/;
+	
 	
 	/**
 	 * Fires node hovered event
