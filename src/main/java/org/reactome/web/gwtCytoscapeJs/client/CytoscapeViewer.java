@@ -24,7 +24,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author brunsont
  *
  */
-public class CytoscapeViewer extends Composite implements IsWidget {
+public class CytoscapeViewer extends Composite{
 	private CytoscapeWrapper cy;
 	private EventBus eventBus;
 	
@@ -79,11 +79,6 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 				cy.cytoscapeInit(Resources.INSTANCE.cytoscapeStyle().getText());
 			}			
 		});
-	}
-	
-	@Override
-	public Widget asWidget() {
-		return this;
 	}
 
 }

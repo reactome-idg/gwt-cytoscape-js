@@ -14,7 +14,7 @@ import com.google.gwt.event.shared.EventBus;
  */
 public class CytoscapeWrapper {
 	
-	EventBus eventBus;
+	private EventBus eventBus;
 	
 	public CytoscapeWrapper(EventBus eventBus) {
 		this.eventBus = eventBus;

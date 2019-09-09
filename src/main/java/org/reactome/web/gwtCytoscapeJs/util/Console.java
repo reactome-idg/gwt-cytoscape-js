@@ -1,6 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.util;
 
-import org.reactome.web.gwtCytoscapeJs.client.gwtCytoscapeJsFactory;
+import org.reactome.web.gwtCytoscapeJs.client.GWTCytoscapeJsFactory;
 
 import com.google.gwt.core.client.GWT;
 
@@ -22,7 +22,7 @@ public class Console {
 	    }
 
 	    public static void error(Object msg){
-	        if(!gwtCytoscapeJsFactory.CONSOLE_VERBOSE) return;
+	        if(!GWTCytoscapeJsFactory.CONSOLE_VERBOSE) return;
 	        if(IS_SCRIPT){
 	            Console._error(String.valueOf(msg));
 	        }else{
@@ -41,7 +41,7 @@ public class Console {
 	    }
 	    
 	    public static void info(Object msg){
-	        if(!gwtCytoscapeJsFactory.CONSOLE_VERBOSE) return;
+	        if(!GWTCytoscapeJsFactory.CONSOLE_VERBOSE) return;
 	        if(IS_SCRIPT){
 	            Console._info(String.valueOf(msg));
 	        }else{
@@ -60,7 +60,7 @@ public class Console {
 	    }
 	    
 	    public static void log(Object msg){
-	        if(!gwtCytoscapeJsFactory.CONSOLE_VERBOSE) return;
+	        if(!GWTCytoscapeJsFactory.CONSOLE_VERBOSE) return;
 	        if(IS_SCRIPT){
 	            Console._log(String.valueOf(msg));
 	        }else{
@@ -80,7 +80,7 @@ public class Console {
 
 	    
 	    public static void warn(Object msg){
-	        if(!gwtCytoscapeJsFactory.CONSOLE_VERBOSE) return;
+	        if(!GWTCytoscapeJsFactory.CONSOLE_VERBOSE) return;
 	        if(IS_SCRIPT){
 	            Console._warn(String.valueOf(msg));
 	        }else{
