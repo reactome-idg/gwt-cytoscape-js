@@ -1,10 +1,10 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
-import org.reactome.web.gwtCytoscapeJs.client.clientBundle.Resources;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.handlers.EdgeClickedHandler;
 import org.reactome.web.gwtCytoscapeJs.handlers.NodeClickedHandler;
+import org.reactome.web.gwtCytoscapeJs.client.clientBundle.Resources;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;

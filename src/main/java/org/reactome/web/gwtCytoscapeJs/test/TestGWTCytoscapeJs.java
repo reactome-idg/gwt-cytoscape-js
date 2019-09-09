@@ -1,7 +1,7 @@
 package org.reactome.web.gwtCytoscapeJs.test;
 
-import org.reactome.web.gwtCytoscapeJs.client.CytoscapeViewer;
 import org.reactome.web.gwtCytoscapeJs.util.CytoscapeEventBus;
+import org.reactome.web.gwtCytoscapeJs.client.CytoscapeViewer;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.EventBus;

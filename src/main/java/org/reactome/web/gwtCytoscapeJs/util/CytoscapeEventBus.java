@@ -2,8 +2,8 @@ package org.reactome.web.gwtCytoscapeJs.util;
 
 import java.util.Date;
 
-import org.reactome.web.gwtCytoscapeJs.client.gwtCytoscapeJsFactory;
 import org.reactome.web.gwtCytoscapeJs.util.Console;
+import org.reactome.web.gwtCytoscapeJs.client.gwtCytoscapeJsFactory;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
