@@ -44,14 +44,16 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 
 		SimplePanel panel = new SimplePanel();
 		panel.getElement().setId("cy");
+		panel.setSize("100%", "100%");
 		
 		btn = new Button("Test Button");
 		
-		view.addNorth(btn, 12);
+		view.addNorth(btn, 25);
 		view.add(panel);
-		view.setSize("100", "100");
+		view.setSize("100%", "100%");
 		view.forceLayout();
 		initWidget(view);
+		bind();
 	}
 	
 	private void initHandlers() {
@@ -69,6 +71,16 @@ public class CytoscapeViewer extends Composite implements IsWidget {
 			public void onEdgeClicked(EdgeClickedEvent event) {/*nothing here*/}});
 	}
 
+	private void bind() {
+		btn.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				cy.cytoscapeInit(Resources.INSTANCE.cytoscapeStyle().getText());
+			}			
+		});
+	}
+	
 	@Override
 	public Widget asWidget() {
 		return this;
