@@ -179,10 +179,10 @@ public class CytoscapeWrapper {
 		$wnd.cy.panBy({x:0, y:px});
 	}-*/;
 	public native void panDown(int px) /*-{
-		$wnd.cy.panBy({x:0, y:(1-px)});
+		$wnd.cy.panBy({x:0, y:-px});
 	}-*/;
 	public native void panLeft(int px) /*-{
-		$wnd.cy.panBy({x:(1-px), y:0});
+		$wnd.cy.panBy({x:-px, y:0});
 	}-*/;
 	public native void panRight(int px) /*-{
 		$wnd.cy.panBy({x:px, y:0});
