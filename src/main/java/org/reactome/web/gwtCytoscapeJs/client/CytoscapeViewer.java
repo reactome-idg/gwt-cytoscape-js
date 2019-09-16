@@ -6,6 +6,7 @@ import org.reactome.web.gwtCytoscapeJs.handlers.EdgeClickedHandler;
 import org.reactome.web.gwtCytoscapeJs.handlers.NodeClickedHandler;
 import org.reactome.web.gwtCytoscapeJs.client.clientBundle.Resources;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -15,6 +16,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -29,6 +31,7 @@ public class CytoscapeViewer extends Composite{
 	private EventBus eventBus;
 	
 	private Button btn;
+	private Button test;
 	
 	public CytoscapeViewer(EventBus eventBus) {
 		this.eventBus = eventBus;
@@ -46,9 +49,16 @@ public class CytoscapeViewer extends Composite{
 		panel.getElement().setId("cy");
 		panel.setSize("100%", "100%");
 		
-		btn = new Button("Test Button");
+		Image img = new Image();
+		img.setSize("50px", "50px");
+		img.getElement().setId("jpg-test");
+		
+		btn = new Button("Generate test graph");
+		test = new Button("test");
 		
 		view.addNorth(btn, 25);
+		view.addNorth(test, 25);
+		view.addSouth(img, 55);
 		view.add(panel);
 		view.setSize("100%", "100%");
 		view.forceLayout();
@@ -78,6 +88,14 @@ public class CytoscapeViewer extends Composite{
 			public void onClick(ClickEvent event) {
 				cy.cytoscapeInit(Resources.INSTANCE.cytoscapeStyle().getText());
 			}			
+		});
+		test.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				
+			}
+			
 		});
 	}
 
