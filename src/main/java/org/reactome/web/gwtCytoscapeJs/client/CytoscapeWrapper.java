@@ -274,6 +274,37 @@ public class CytoscapeWrapper {
 		$wnd.cy.style().fromJson(styleJSON).update();
 	}-*/;
 	
+	/*
+	 * returns an unflattened string of the JSON data for download or other use
+	 * @return
+	 */
+	protected native String exportCytoscapeJSON() /*-{
+		var json = JSON.stringify($wnd.cy.json());
+		return json;
+	}-*/;
+	
+	/**
+	 * Function to output the graph as a png file and place it on an image tag.
+	 * Pass in the id name of an image tag for this to be placed on without the "#".
+	 * eg. passing in 'png-eg' will place the image data on an image element with an id of 'png-eg'.
+	 * @param imgTag
+	 * @return
+	 */
+	protected native void exportCytoscapePNG(String imgTag) /*-{
+		var png = $wnd.cy.png();
+		$doc.querySelector("#" + imgTag).setAttribute('src', png);
+	}-*/;
+	
+	/**
+	 * Function to output the graph as a JPG file and place it on an image tag.
+	 * Pass in the id name of an image tag for this to be placed on without the "#".
+	 * eg. passing in 'jpg-eg' will place the image data on an image element with an id of 'jpg-eg'.
+	 * @param imgTag
+	 */
+	protected native void exportCytoscapeJPG(String imgTag) /*-{
+		var jpg = $wnd.cy.jpg();
+		$doc.querySelector("#" + imgTag).setAttribute('src', jpg);
+	}-*/;
 	
 	/**
 	 * Fires node hovered event
