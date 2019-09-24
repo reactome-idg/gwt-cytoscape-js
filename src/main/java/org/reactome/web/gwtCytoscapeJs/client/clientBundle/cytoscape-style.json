@@ -26,4 +26,10 @@
     "width": "3",
     "overlay-padding": "3px"
   }
+},
+{
+  "selector": "edge:selected",
+  "style": {
+  	"line-color": "#FF0000"
+  }
 }]

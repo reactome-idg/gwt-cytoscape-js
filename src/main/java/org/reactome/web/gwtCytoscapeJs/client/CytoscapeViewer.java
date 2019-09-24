@@ -72,7 +72,7 @@ public class CytoscapeViewer extends Composite{
 		eventBus.addHandler(NodeClickedEvent.TYPE, new NodeClickedHandler() {
 			@Override
 			public void onNodeClicked(NodeClickedEvent event) {
-				cy.highlightSelectedEdgeGroup(event.getNodeId(), Resources.INSTANCE.cytoscapeStyle().getText());
+				//cy.highlightSelectedEdgeGroup(event.getNodeId());
 			}
 
 		});

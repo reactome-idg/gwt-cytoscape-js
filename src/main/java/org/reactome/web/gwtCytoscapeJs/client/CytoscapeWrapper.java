@@ -206,12 +206,9 @@ public class CytoscapeWrapper {
 	/**
 	 * Higlights edges connected to a selected node
 	 * @param node
-	 * @param baseStyle
 	 */
-	public native void highlightSelectedEdgeGroup(String node, String baseStyle) /*-{
-		var styleJSON = $wnd.JSON.parse(baseStyle);
-		$wnd.cy.style().fromJson(styleJSON).update();
-		$wnd.cy.style().selector('edge[target = "'+node+'"], edge[source="'+node+'"]').style({'line-color': 'red'}).update();
+	public native void highlightSelectedEdgeGroup(String node) /*-{
+		$wnd.cy.edges('[target = "'+node+'"]').select();
 	}-*/;
 	
 	/**
