@@ -35,7 +35,7 @@ public class CytoscapeViewer extends Composite{
 	
 	public CytoscapeViewer(EventBus eventBus) {
 		this.eventBus = eventBus;
-		cy = new CytoscapeWrapper(eventBus);
+		cy = new CytoscapeWrapper(eventBus, Resources.INSTANCE.cytoscapeStyle().getText());
 	
 		initialise();
 		//init handlers and button click events
@@ -86,7 +86,7 @@ public class CytoscapeViewer extends Composite{
 
 			@Override
 			public void onClick(ClickEvent event) {
-				cy.cytoscapeInit(Resources.INSTANCE.cytoscapeStyle().getText());
+				cy.cytoscapeInit();
 			}			
 		});
 		test.addClickHandler(new ClickHandler() {

@@ -15,19 +15,21 @@ import com.google.gwt.event.shared.EventBus;
 public class CytoscapeWrapper {
 	
 	private EventBus eventBus;
+	private String style;
 	
-	public CytoscapeWrapper(EventBus eventBus) {
+	public CytoscapeWrapper(EventBus eventBus, String style) {
 		this.eventBus = eventBus;
+		this.style = style;
 	}
 	
 	/**
 	 * generic class for testing
 	 */
-	public native void cytoscapeInit(String style) /*-{
+	public native void cytoscapeInit() /*-{
 		var obj = new $wnd.Object();
 		var zoom = $doc.zoom = 1;
 		
-		var styleJSON = $wnd.JSON.parse(style);
+		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = $wnd.glyElements;
@@ -52,7 +54,7 @@ public class CytoscapeWrapper {
 	 * @param style
 	 * @param layout
 	 */
-	public native void cytoscapeInit(String nodes, String edges, String style, String layout) /*-{
+	public native void cytoscapeInit(String nodes, String edges, String layout) /*-{
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
@@ -61,7 +63,7 @@ public class CytoscapeWrapper {
 		
 		var nodes = $wnd.JSON.parse(nodes);
 		var edges = $wnd.JSON.parse(edges);
-		var styleJSON = $wnd.JSON.parse(style);
+		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = nodes;
