@@ -323,19 +323,31 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
-	 * selects all edges and with a value of id for a passed in selector. Selection style depends on provided style.json on initializaiton
+	 * Highlights all edges and with a value of id for a passed in selector. Use when you want to have nodes be selected.
 	 * @param selector
 	 * @param id
 	 */
 	public native void hierarchySelect(String selector, String value) /*-{
-		$wnd.cy.edges().unselect();
-		$wnd.cy.edges('['+selector+' = "' + value +'"]').select();
+		$wnd.cy.edges.unselect();
+		$wnd.cy.edges('['+selector+' = "' + value +'"]').select();		
 	}-*/;
 	
 	/**
-	 * reset so no nodes are selected by different coloring
+	 * Highlights all edges with a value of id for a passed in selector.
+	 * Use when nodes need to be highlighted on hover while other nodes are already selected.
+	 * 
+	 * @param selector
+	 * @param value
 	 */
-	public native void resetSelection() /*-{
+	public native void hierarchyHover(String selector, String value) /*-{
+		var eles = $wnd.cy.edges('['+selector+' = "' + value +'"]');
+		$wnd.cy.style().selector(eles).style({'line-color': 'blue'}).update();
+	}-*/;
+	
+	/**
+	 * resets to base style
+	 */
+	public native void resetSelection()/*-{
 		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		$wnd.cy.style().fromJson(styleJSON).update();
 	}-*/;
