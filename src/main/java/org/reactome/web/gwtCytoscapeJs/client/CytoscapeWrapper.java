@@ -309,6 +309,16 @@ public class CytoscapeWrapper {
 	protected native void edgeHovered() /*-{}-*/;
 	
 	/**
+	 * selects all edges and with a value of id for a passed in selector. Selection style depends on provided style.json on initializaiton
+	 * @param selector
+	 * @param id
+	 */
+	public native void hierarchySelect(String selector, String value) /*-{
+		$wnd.cy.edges().unselect();
+		$wnd.cy.edges('['+selector+' = "' + value +'"]').select();
+	}-*/;
+	
+	/**
 	 * Called by JSNI to fire node clicked event
 	 * @param node
 	 */ 
