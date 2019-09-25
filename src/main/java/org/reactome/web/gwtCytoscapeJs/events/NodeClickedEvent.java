@@ -28,6 +28,10 @@ public class NodeClickedEvent extends GwtEvent<NodeClickedHandler>{
 	public String getyCoordinate() {
 		return yCoordinate;
 	}
+	
+	public String getNodeId() {
+		return nodeId;
+	}
 
 	@Override
 	public Type<NodeClickedHandler> getAssociatedType() {
@@ -38,10 +42,6 @@ public class NodeClickedEvent extends GwtEvent<NodeClickedHandler>{
 	protected void dispatch(NodeClickedHandler handler) {
 		handler.onNodeClicked(this);
 		
-	}
-	
-	public String getNodeId() {
-		return nodeId;
 	}
 	
     @Override

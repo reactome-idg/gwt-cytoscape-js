@@ -1,6 +1,7 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
+import org.reactome.web.gwtCytoscapeJs.events.EdgeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeMouseOutEvent;
@@ -248,8 +249,24 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), x, y);
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
+			//Nothing here
 		});
+	}-*/;
+	
+	/**
+	 * Fires edge hovered event
+	 */
+	protected native void edgeHovered() /*-{
+		var that = this;
+		$wnd.cy.elements('edge').on('mouseover', function(evt){
+			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'redd'}).update();
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)();
+		});
+		$wnd.cy.elements('edge').on('mouseout', function(evt){
+			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
+			
+		});
+	
 	}-*/;
 	
 	/**
@@ -306,11 +323,6 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
-	 * Fires node hovered event
-	 */
-	protected native void edgeHovered() /*-{}-*/;
-	
-	/**
 	 * selects all edges and with a value of id for a passed in selector. Selection style depends on provided style.json on initializaiton
 	 * @param selector
 	 * @param id
@@ -345,10 +357,10 @@ public class CytoscapeWrapper {
 	}
 	
 	/**
-	 * Called when mouse leaves a node area
+	 * fires event for when an edge is hovered
 	 */
-	private void fireNodeMouseOutEvent() {
-		eventBus.fireEventFromSource(new NodeMouseOutEvent(), this);
+	private void fireEdgeHoveredEvent() {
+		eventBus.fireEventFromSource(new EdgeHoveredEvent(), this);
 	}
 	
 }
