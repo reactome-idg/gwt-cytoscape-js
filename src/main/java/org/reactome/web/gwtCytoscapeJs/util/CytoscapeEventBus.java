@@ -3,7 +3,6 @@ package org.reactome.web.gwtCytoscapeJs.util;
 import java.util.Date;
 
 import org.reactome.web.gwtCytoscapeJs.util.Console;
-import org.reactome.web.gwtCytoscapeJs.client.GWTCytoscapeJsFactory;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -25,13 +24,13 @@ public class CytoscapeEventBus extends SimpleEventBus {
 
     @Override
     public void fireEventFromSource(GwtEvent<?> event, Object source) {
-        if(GWTCytoscapeJsFactory.EVENT_BUS_VERBOSE) {
-            Console.info(
-                    this.fmt.format(new Date()) + " " +
-                            source.getClass().getSimpleName() + " >> " +
-                            event
-            );
-        }
+
+        Console.info(
+                this.fmt.format(new Date()) + " " +
+                        source.getClass().getSimpleName() + " >> " +
+                        event
+        );
+        
         super.fireEventFromSource(event, source);
     }
 }
