@@ -333,6 +333,14 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	/**
+	 * reset so no nodes are selected by different coloring
+	 */
+	public native void resetSelection() /*-{
+		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.fi.client.visualisers.fiview.CytoscapeEntity::baseStyle);
+		$wnd.cy.style().fromJson(styleJSON).update();
+	}-*/;
+	
+	/**
 	 * Called by JSNI to fire node clicked event
 	 * @param node
 	 */ 
