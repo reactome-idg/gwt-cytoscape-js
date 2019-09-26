@@ -69,7 +69,7 @@ public class CytoscapeWrapper {
 	    obj.container = $doc.getElementById('cy');
 	    obj.elements = nodes;
 	    obj.style = styleJSON;
-	    obj.layout = { name: layout};
+	    obj.layout = { name: ''+layout+''};
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    cy.add(edges);	    
 	    
@@ -90,7 +90,6 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	public native void addCytoscapeNodes(String nodes) /*-{
-	console.log(nodes);
 	//convert incoming string to node format
 	var nodes = $wnd.JSON.parse(nodes);
 	
@@ -139,6 +138,11 @@ public class CytoscapeWrapper {
 	public native void clearCytoscapeGraph() /*-{
 		$wnd.cy.elements('edge').remove();
 		$wnd.cy.elements('node').remove();
+	}-*/;
+	
+	public native void resetCytoscapeLayout() /*-{
+		var layout = $wnd.cy.layout({name:'cose'});
+		layout.run();
 	}-*/;
 	
 	/**
