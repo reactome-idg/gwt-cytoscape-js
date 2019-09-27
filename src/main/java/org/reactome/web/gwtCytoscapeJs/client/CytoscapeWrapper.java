@@ -226,12 +226,10 @@ public class CytoscapeWrapper {
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			var id = evt.target.id();
-			var name = evt.target.name();
-			var ele = evt.target;
 			
 			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'red'}).update();
 			
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(id, name);
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id(), evt.target.json().data.name);
 		});
 		
 		$wnd.cy.elements('node').on('tapunselect', function(evt){
@@ -257,7 +255,7 @@ public class CytoscapeWrapper {
 	protected native void nodeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('mouseover', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), evt.target.name());
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), evt.target.json().data.name);
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
