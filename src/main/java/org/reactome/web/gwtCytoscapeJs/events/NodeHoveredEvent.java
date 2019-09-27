@@ -13,9 +13,11 @@ public class NodeHoveredEvent extends GwtEvent<NodeHoveredHandler>{
 	 public static Type<NodeHoveredHandler> TYPE = new Type<>();
 	 
 	 String nodeId;
+	 String name;
 	 
-	 public NodeHoveredEvent(String nodeId) {
+	 public NodeHoveredEvent(String nodeId, String name) {
 		 this.nodeId = nodeId;
+		 this.name = name;
 	 }
 
 	@Override
@@ -30,6 +32,10 @@ public class NodeHoveredEvent extends GwtEvent<NodeHoveredHandler>{
 	
 	public String getNodeId() {
 		return nodeId;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
     @Override
