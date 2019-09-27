@@ -14,7 +14,7 @@ public class NodeMouseOutEvent extends GwtEvent<NodeMouseOutHandler>{
 
 	@Override
 	protected void dispatch(NodeMouseOutHandler handler) {
-		handler.onMouseOut(this);
+		handler.onNodeMouseOut(this);
 	}
 
     @Override

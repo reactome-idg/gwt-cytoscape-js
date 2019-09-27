@@ -2,6 +2,7 @@ package org.reactome.web.gwtCytoscapeJs.client;
 
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeHoveredEvent;
+import org.reactome.web.gwtCytoscapeJs.events.EdgeMouseOutEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeMouseOutEvent;
@@ -224,10 +225,17 @@ public class CytoscapeWrapper {
 	protected native void nodeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
-			var node = evt.target;
-			var x = node.position().x + '';
-			var y = node.position().y + '';
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id(), x, y);
+			var id = evt.target.id();
+			var ele = evt.target;
+			
+			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'red'}).update();
+			
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(id);
+		});
+		
+		$wnd.cy.elements('node').on('tapunselect', function(evt){
+			var id = evt.target.id();
+			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'black'}).update();
 		});
 	}-*/;
 	
@@ -236,8 +244,9 @@ public class CytoscapeWrapper {
 	 */
 	protected native void edgeSelected() /*-{
 		var that = this;
-		$wnd.cy.elements('edge').on('tap', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(evt.target.id());
+		$wnd.cy.elements('edge').on('tap', function(evt){			
+			var id = evt.target.id()
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(id);
 		});
 	}-*/;
 	
@@ -247,13 +256,10 @@ public class CytoscapeWrapper {
 	protected native void nodeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('mouseover', function(evt){
-			var node = evt.target;
-			var x = node.position().x + '';
-			var y = node.position().y + '';
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), x, y);
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id());
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
-			//Nothing here
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
 		});
 	}-*/;
 	
@@ -263,12 +269,17 @@ public class CytoscapeWrapper {
 	protected native void edgeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('edge').on('mouseover', function(evt){
+			var id = evt.target.id();
+			
 			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'red'}).update();
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)();
+			
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id);
 		});
 		$wnd.cy.elements('edge').on('mouseout', function(evt){
 			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
 			
+			
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeMouseOutEvent(*)();
 		});
 	
 	}-*/;
@@ -360,31 +371,44 @@ public class CytoscapeWrapper {
 	 * Called by JSNI to fire node clicked event
 	 * @param node
 	 */ 
-	private void fireNodeClickedEvent(String node, String x, String y) { 
-		eventBus.fireEventFromSource(new NodeClickedEvent(node, x, y), this);
+	private void fireNodeClickedEvent(String id) { 
+		eventBus.fireEventFromSource(new NodeClickedEvent(id), this);
 	}
 	
 	/**
 	 * Called by JSNI to fire edge clicked event
 	 * @param edge
 	 */
-	private void fireEdgeClickedEvent(String edge) {
-		eventBus.fireEventFromSource(new EdgeClickedEvent(edge), this);
+	private void fireEdgeClickedEvent(String id) {
+		eventBus.fireEventFromSource(new EdgeClickedEvent(id), this);
 	}
 	
 	/**
 	 * Called by JSNI to fire node hovered event
 	 * @param node
 	 */
-	private void fireNodeHoveredEvent(String node, String x, String y) {
-		eventBus.fireEventFromSource(new NodeHoveredEvent(node, x, y), this);
+	private void fireNodeHoveredEvent(String id) {
+		eventBus.fireEventFromSource(new NodeHoveredEvent(id), this);
 	}
 	
 	/**
 	 * fires event for when an edge is hovered
 	 */
-	private void fireEdgeHoveredEvent() {
-		eventBus.fireEventFromSource(new EdgeHoveredEvent(), this);
+	private void fireEdgeHoveredEvent(String id) {
+		eventBus.fireEventFromSource(new EdgeHoveredEvent(id), this);
 	}
 	
+	/**
+	 * Fires node mouse out event
+	 */
+	private void fireNodeMouseOutEvent() {
+		eventBus.fireEventFromSource(new NodeMouseOutEvent(), this);
+	}
+	
+	/**
+	 * Fires edge mouse out event
+	 */
+	private void fireEdgeMouseOutEvent() {
+		eventBus.fireEventFromSource(new EdgeMouseOutEvent(), this);
+	}
 }

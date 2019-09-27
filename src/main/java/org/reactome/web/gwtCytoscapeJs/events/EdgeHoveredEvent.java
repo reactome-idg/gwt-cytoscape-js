@@ -7,6 +7,12 @@ import com.google.gwt.event.shared.GwtEvent;
 public class EdgeHoveredEvent extends GwtEvent<EdgeHoveredHandler>{
     public static Type<EdgeHoveredHandler> TYPE = new Type<>();
 
+    private String edgeId;
+    
+    public EdgeHoveredEvent(String edgeId) {
+    	this.edgeId = edgeId;
+    }
+    
 	@Override
 	public Type<EdgeHoveredHandler> getAssociatedType() {
 		return TYPE;
@@ -15,6 +21,10 @@ public class EdgeHoveredEvent extends GwtEvent<EdgeHoveredHandler>{
 	@Override
 	protected void dispatch(EdgeHoveredHandler handler) {
 		handler.onEdgeHovered(this);
+	}
+	
+	public String getEdgeId() {
+		return edgeId;
 	}
 
 }

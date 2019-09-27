@@ -13,22 +13,10 @@ public class NodeHoveredEvent extends GwtEvent<NodeHoveredHandler>{
 	 public static Type<NodeHoveredHandler> TYPE = new Type<>();
 	 
 	 String nodeId;
-	 String xCoordinate;
-	 String yCoordinate;
 	 
-	 public NodeHoveredEvent(String nodeId, String xCoordinate, String yCoordinate) {
+	 public NodeHoveredEvent(String nodeId) {
 		 this.nodeId = nodeId;
-		 this.xCoordinate = xCoordinate;
-		 this.yCoordinate = yCoordinate;
 	 }
-	 
-	public String getxCoordinate() {
-		return xCoordinate;
-	}
-
-	public String getyCoordinate() {
-		return yCoordinate;
-	}
 
 	@Override
 	public Type<NodeHoveredHandler> getAssociatedType() {
