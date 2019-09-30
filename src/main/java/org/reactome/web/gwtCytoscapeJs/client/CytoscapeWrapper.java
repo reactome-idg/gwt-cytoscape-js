@@ -270,7 +270,7 @@ public class CytoscapeWrapper {
 		$wnd.cy.elements('edge').on('mouseover', function(evt){
 			var id = evt.target.id();
 			
-			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'red'}).update();
+			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'blue'}).update();
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id);
 		});
