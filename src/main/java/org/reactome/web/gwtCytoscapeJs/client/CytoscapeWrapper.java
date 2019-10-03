@@ -244,8 +244,11 @@ public class CytoscapeWrapper {
 	protected native void edgeSelected() /*-{
 		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){			
-			var id = evt.target.id()
+			var id = evt.target.id();
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(id);
+		});
+		$wnd.cy.elements('edge').on('tapunselect', function(evt){
+			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
 		});
 	}-*/;
 	
@@ -275,8 +278,15 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id);
 		});
 		$wnd.cy.elements('edge').on('mouseout', function(evt){
-			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
+			var ele = evt.target;
 			
+			//unhighlight edge only if not selected
+			if(!ele.selected()){
+				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
+			}
+			else if(ele.selected()){
+				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'red'}).update();
+			}
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeMouseOutEvent(*)();
 		});
