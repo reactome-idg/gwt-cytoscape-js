@@ -368,6 +368,11 @@ public class CytoscapeWrapper {
 		$wnd.cy.style().selector(eles).style({'line-color': 'blue'}).update();
 	}-*/;
 	
+	public native void highlightNodeAndAttachedEdges(String node, String rgb) /*-{
+		$wnd.cy.style().selector('node#' + node).style({'background-color':rgb}).update();
+		$wnd.cy.style().selector('edge[source ="' + node + '"], edge[target ="' + node + '"]').style({'line-color':'red'}).update();
+	}-*/;
+	
 	/**
 	 * resets to base style
 	 */
