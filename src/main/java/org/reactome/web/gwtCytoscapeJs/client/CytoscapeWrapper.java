@@ -226,7 +226,10 @@ public class CytoscapeWrapper {
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			var id = evt.target.id();
+			//var node = evt.target;
 			
+//			var selectabl = evt.target.connectedEdges().selectable();
+//			evt.target.connectedEdges().select();
 			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'red'}).update();
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id(), evt.target.json().data.name);
@@ -234,6 +237,10 @@ public class CytoscapeWrapper {
 		
 		$wnd.cy.elements('node').on('tapunselect', function(evt){
 			var id = evt.target.id();
+			//var node = evt.target;
+			
+//			var edges = node.connectedEdges();
+//			edges.unselect();
 			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'black'}).update();
 		});
 	}-*/;
