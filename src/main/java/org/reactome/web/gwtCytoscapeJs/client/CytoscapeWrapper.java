@@ -375,9 +375,8 @@ public class CytoscapeWrapper {
 		$wnd.cy.style().selector(eles).style({'line-color': 'blue'}).update();
 	}-*/;
 	
-	public native void highlightNodeAndAttachedEdges(String node, String rgb) /*-{
-		$wnd.cy.style().selector('node#' + node).style({'background-color':rgb}).update();
-		$wnd.cy.style().selector('edge[source ="' + node + '"], edge[target ="' + node + '"]').style({'line-color':'red'}).update();
+	public native void highlightNode(String node, String color) /*-{
+		$wnd.cy.style().selector('node#' + node).style({'background-color':color}).update();
 	}-*/;
 	
 	/**
@@ -386,6 +385,10 @@ public class CytoscapeWrapper {
 	public native void resetSelection()/*-{
 		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		$wnd.cy.style().fromJson(styleJSON).update();
+	}-*/;
+	
+	public native void setNodeFill(String color)/*-{
+		$wnd.cy.style().selector('node').style({'background-color':color}).update();
 	}-*/;
 	
 	/**
