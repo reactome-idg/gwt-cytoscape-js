@@ -142,7 +142,7 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	public native void resetCytoscapeLayout() /*-{
-		var layout = $wnd.cy.layout({name:'cose'});
+		var layout = $wnd.cy.layout({name:'cose', componentSpacing:100});
 		layout.run();
 	}-*/;
 	
@@ -241,7 +241,7 @@ public class CytoscapeWrapper {
 			
 //			var edges = node.connectedEdges();
 //			edges.unselect();
-			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'black'}).update();
+			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': '#bbb'}).update();
 		});
 	}-*/;
 	
@@ -255,7 +255,7 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(id);
 		});
 		$wnd.cy.elements('edge').on('tapunselect', function(evt){
-			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
+			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': '#bbb'}).update();
 		});
 	}-*/;
 	
@@ -289,7 +289,7 @@ public class CytoscapeWrapper {
 			
 			//unhighlight edge only if not selected
 			if(!ele.selected()){
-				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'black'}).update();
+				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': '#bbb'}).update();
 			}
 			else if(ele.selected()){
 				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'red'}).update();
