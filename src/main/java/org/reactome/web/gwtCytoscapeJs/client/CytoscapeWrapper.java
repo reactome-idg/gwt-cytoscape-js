@@ -226,22 +226,15 @@ public class CytoscapeWrapper {
 		var that = this;
 		$wnd.cy.elements('node').on('tap', function(evt){
 			var id = evt.target.id();
-			//var node = evt.target;
 			
-//			var selectabl = evt.target.connectedEdges().selectable();
-//			evt.target.connectedEdges().select();
-			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': 'red'}).update();
+			evt.target.connectedEdges().addClass('highlighted');
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeClickedEvent(*)(evt.target.id(), evt.target.json().data.name);
 		});
 		
 		$wnd.cy.elements('node').on('tapunselect', function(evt){
 			var id = evt.target.id();
-			//var node = evt.target;
-			
-//			var edges = node.connectedEdges();
-//			edges.unselect();
-			$wnd.cy.style().selector('edge[target = "'+id+'"], edge[source="'+id+'"]').style({'line-color': '#bbb'}).update();
+			evt.target.connectedEdges().removeClass('highlighted');
 		});
 	}-*/;
 	
@@ -252,10 +245,12 @@ public class CytoscapeWrapper {
 		var that = this;
 		$wnd.cy.elements('edge').on('tap', function(evt){			
 			var id = evt.target.id();
+			evt.target.removeClass("highlighted");
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeClickedEvent(*)(id);
 		});
 		$wnd.cy.elements('edge').on('tapunselect', function(evt){
-			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': '#bbb'}).update();
+			//testing to see what removing next line breaks
+			//$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': '#bbb'}).update();
 		});
 	}-*/;
 	
@@ -280,20 +275,14 @@ public class CytoscapeWrapper {
 		$wnd.cy.elements('edge').on('mouseover', function(evt){
 			var id = evt.target.id();
 			
-			$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'blue'}).update();
+			evt.target.addClass('hovered');
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id);
 		});
 		$wnd.cy.elements('edge').on('mouseout', function(evt){
 			var ele = evt.target;
 			
-			//unhighlight edge only if not selected
-			if(!ele.selected()){
-				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': '#bbb'}).update();
-			}
-			else if(ele.selected()){
-				$wnd.cy.style().selector('edge[id = "'+evt.target.id()+'"]').style({'line-color': 'red'}).update();
-			}
+			evt.target.removeClass('hovered');
 			
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeMouseOutEvent(*)();
 		});
@@ -359,6 +348,7 @@ public class CytoscapeWrapper {
 	 * @param id
 	 */
 	public native void hierarchySelect(String selector, String value) /*-{
+		$wnd.cy.edges().removeClass('hovered');
 		$wnd.cy.edges().unselect();
 		$wnd.cy.edges('['+selector+' = "' + value +'"]').select();		
 	}-*/;
@@ -372,23 +362,56 @@ public class CytoscapeWrapper {
 	 */
 	public native void hierarchyHover(String selector, String value) /*-{
 		var eles = $wnd.cy.edges('['+selector+' = "' + value +'"]');
-		$wnd.cy.style().selector(eles).style({'line-color': 'blue'}).update();
+		eles.addClass('hovered');
 	}-*/;
 	
 	public native void highlightNode(String node, String color) /*-{
 		$wnd.cy.style().selector('node#' + node).style({'background-color':color}).update();
 	}-*/;
 	
+	public native void addClass(String cssClass) /*-{
+		$wnd.cy.elemtents().addClass(cssClass);
+	}-*/;
+	
+	public native void removeClass(String cssClass)/*-{
+		$wnd.cy.elements().removeClass(cssClass);
+	}-*/;
+	
+	public native void addNodeClass(String cssClass)/*-{
+		$wnd.cy.nodes().addClass(cssClass);
+	}-*/;
+	
+	public native void addNodeClass(String selector, String value, String cssClass)/*-{	
+		$wnd.cy.node('['+selector+' = "'+value+'"]').select();
+
+	}-*/;
+	
+	public native void removeNodeClass(String cssClass)/*-{
+		$wnd.cy.nodes().removeClass(cssClass);
+	}-*/;
+	
+	public native void addEdgeClass(String cssClass)/*-{
+		$wnd.cy.edges().addClass(cssClass);
+	}-*/;
+	
+	public native void removeEdgeClass(String cssClass) /*-{
+		$wnd.cy.edges().removeClass(cssClass);
+	}-*/;
+	
 	/**
 	 * resets to base style
 	 */
-	public native void resetSelection()/*-{
+	public native void resetStyle()/*-{
 		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		$wnd.cy.style().fromJson(styleJSON).update();
 	}-*/;
 	
 	public native void setNodeFill(String color)/*-{
 		$wnd.cy.style().selector('node').style({'background-color':color}).update();
+	}-*/;
+	
+	public native void resetSelection()/*-{
+		$wnd.cy.nodes().unselect();
 	}-*/;
 	
 	/**
