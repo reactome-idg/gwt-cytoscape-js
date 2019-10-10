@@ -348,6 +348,7 @@ public class CytoscapeWrapper {
 	 * @param id
 	 */
 	public native void hierarchySelect(String selector, String value) /*-{
+		$wnd.cy.edges().removeClass('highlighted');
 		$wnd.cy.edges().removeClass('hovered');
 		$wnd.cy.edges().unselect();
 		$wnd.cy.edges('['+selector+' = "' + value +'"]').select();		
