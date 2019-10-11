@@ -4,14 +4,10 @@ import org.reactome.web.gwtCytoscapeJs.handlers.CytoscapeCoreSelectedHandler;
 
 import com.google.gwt.event.shared.GwtEvent;
 
-/**
- * 
- * @author brunsont
- *
- */
 public class CytoscapeCoreSelectedEvent extends GwtEvent<CytoscapeCoreSelectedHandler> {
     public static Type<CytoscapeCoreSelectedHandler> TYPE = new Type<>();
 
+	
 	@Override
 	public Type<CytoscapeCoreSelectedHandler> getAssociatedType() {
 		return TYPE;
@@ -24,7 +20,7 @@ public class CytoscapeCoreSelectedEvent extends GwtEvent<CytoscapeCoreSelectedHa
 	
 	@Override
 	public String toString() {
-		return "cytoscape core selected";
+		return "Cytoscape Core Selected";
 	}
 
 }
