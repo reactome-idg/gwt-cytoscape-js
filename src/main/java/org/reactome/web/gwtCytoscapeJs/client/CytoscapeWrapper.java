@@ -1,5 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
+import org.reactome.web.gwtCytoscapeJs.events.CytoscapeCoreSelectedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeHoveredEvent;
 import org.reactome.web.gwtCytoscapeJs.events.EdgeMouseOutEvent;
@@ -44,6 +45,7 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreSelected(*)();
 	    
 	   	$wnd.cy.zoom(zoom);
 	    
@@ -79,6 +81,8 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreSelected(*)();
+	   	
 	   	
 	   	$wnd.cy.zoom(zoom);
 	   	
@@ -101,6 +105,7 @@ public class CytoscapeWrapper {
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreSelected(*)();
 	
 	
 	}-*/;
@@ -130,6 +135,7 @@ public class CytoscapeWrapper {
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
 	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreSelected(*)();
 	
 	}-*/;
 	
@@ -287,6 +293,15 @@ public class CytoscapeWrapper {
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeMouseOutEvent(*)();
 		});
 	
+	}-*/;
+	
+	private native void cytoscapeCoreSelected() /*-{
+		var that = this;
+		$wnd.cy.on('tap', function (evt){
+			if(evt.target == $wnd.cy){
+				that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireCytoscapeCoreSelectedEvent(*)();
+			}
+		});
 	}-*/;
 	
 	/**
@@ -458,5 +473,9 @@ public class CytoscapeWrapper {
 	 */
 	private void fireEdgeMouseOutEvent() {
 		eventBus.fireEventFromSource(new EdgeMouseOutEvent(), this);
+	}
+	
+	private void fireCytoscapeCoreSelectedEvent() {
+		eventBus.fireEventFromSource(new CytoscapeCoreSelectedEvent(), this);
 	}
 }
