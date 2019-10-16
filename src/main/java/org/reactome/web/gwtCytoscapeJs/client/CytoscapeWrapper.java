@@ -151,7 +151,7 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	public native void setCytoscapeLayout(String layout) /*-{
-		var layout = $wnd.cy.layout({name:''+layout+'', componentSpacing:100});
+		var layout = $wnd.cy.layout({name:''+layout+'', componentSpacing:50});
 		layout.run();
 	}-*/;
 	
