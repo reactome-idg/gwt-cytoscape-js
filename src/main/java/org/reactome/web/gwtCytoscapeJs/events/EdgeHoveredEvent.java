@@ -8,9 +8,13 @@ public class EdgeHoveredEvent extends GwtEvent<EdgeHoveredHandler>{
     public static Type<EdgeHoveredHandler> TYPE = new Type<>();
 
     private String edgeId;
+    private int x;
+    private int y;
     
-    public EdgeHoveredEvent(String edgeId) {
+    public EdgeHoveredEvent(String edgeId, int x, int y) {
     	this.edgeId = edgeId;
+    	this.x = x;
+    	this.y = y;
     }
     
 	@Override
@@ -27,4 +31,11 @@ public class EdgeHoveredEvent extends GwtEvent<EdgeHoveredHandler>{
 		return edgeId;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

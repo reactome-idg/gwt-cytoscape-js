@@ -269,7 +269,9 @@ public class CytoscapeWrapper {
 	protected native void nodeHovered() /*-{
 		var that = this;
 		$wnd.cy.elements('node').on('mouseover', function(evt){
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), evt.target.json().data.name);
+			var x = evt.originalEvent.x;
+			var y = evt.originalEvent.y;
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeHoveredEvent(*)(evt.target.id(), evt.target.json().data.name, x, y);
 		});
 		$wnd.cy.elements('node').on('mouseout', function(evt){
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeMouseOutEvent(*)();
@@ -283,10 +285,12 @@ public class CytoscapeWrapper {
 		var that = this;
 		$wnd.cy.elements('edge').on('mouseover', function(evt){
 			var id = evt.target.id();
+			var x = evt.originalEvent.x;
+			var y = evt.originalEvent.y;
 			
 			evt.target.addClass('hovered');
 			
-			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id);
+			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireEdgeHoveredEvent(*)(id, x, y);
 		});
 		$wnd.cy.elements('edge').on('mouseout', function(evt){
 			var ele = evt.target;
@@ -477,15 +481,15 @@ public class CytoscapeWrapper {
 	 * Called by JSNI to fire node hovered event
 	 * @param node
 	 */
-	private void fireNodeHoveredEvent(String id, String name) {
-		eventBus.fireEventFromSource(new NodeHoveredEvent(id, name), this);
+	private void fireNodeHoveredEvent(String id, String name, int x, int y) {
+		eventBus.fireEventFromSource(new NodeHoveredEvent(id, name, x, y), this);
 	}
 	
 	/**
 	 * fires event for when an edge is hovered
 	 */
-	private void fireEdgeHoveredEvent(String id) {
-		eventBus.fireEventFromSource(new EdgeHoveredEvent(id), this);
+	private void fireEdgeHoveredEvent(String id, int x, int y) {
+		eventBus.fireEventFromSource(new EdgeHoveredEvent(id, x, y), this);
 	}
 	
 	/**

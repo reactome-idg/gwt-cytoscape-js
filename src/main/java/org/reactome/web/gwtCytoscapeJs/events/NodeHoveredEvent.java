@@ -12,12 +12,16 @@ import com.google.gwt.event.shared.GwtEvent;
 public class NodeHoveredEvent extends GwtEvent<NodeHoveredHandler>{
 	 public static Type<NodeHoveredHandler> TYPE = new Type<>();
 	 
-	 String nodeId;
-	 String name;
+	 private String nodeId;
+	 private String name;
+	 private int x;
+	 private int y;
 	 
-	 public NodeHoveredEvent(String nodeId, String name) {
+	 public NodeHoveredEvent(String nodeId, String name, int x, int y) {
 		 this.nodeId = nodeId;
 		 this.name = name;
+		 this.x = x;
+		 this.y = y;
 	 }
 
 	@Override
@@ -38,10 +42,17 @@ public class NodeHoveredEvent extends GwtEvent<NodeHoveredHandler>{
 		return name;
 	}
 	
-    @Override
+    public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	@Override
     public String toString() {
         return "NodeHoveredEvent{" +
                 "content=" + getNodeId() + "}";
     }
-
 }
