@@ -413,7 +413,11 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	public native void highlightNode(String node, String color) /*-{
-		$wnd.cy.style().selector('node#' + node).style({'background-color':color}).update();
+		$wnd.cy.style().selector('node#' + node)
+		.style({
+			'background-color':color,
+			'background-opacity':'1'
+		}).update();
 	}-*/;
 	
 	public native void addClass(String cssClass) /*-{
