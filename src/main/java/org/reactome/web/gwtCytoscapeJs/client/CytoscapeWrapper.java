@@ -412,11 +412,17 @@ public class CytoscapeWrapper {
 		eles.addClass('hovered');
 	}-*/;
 	
-	public native void highlightNode(String node, String color) /*-{
+	/**
+	 * pass in id of node with a hex color. Opacity should be a decimal between 0 and 1 cast to a string
+	 * @param node
+	 * @param color
+	 * @param opacity
+	 */
+	public native void highlightNode(String node, String color, String opacity) /*-{
 		$wnd.cy.style().selector('node#' + node)
 		.style({
 			'background-color':color,
-			'background-opacity':'1'
+			'background-opacity':opacity
 		}).update();
 	}-*/;
 	
