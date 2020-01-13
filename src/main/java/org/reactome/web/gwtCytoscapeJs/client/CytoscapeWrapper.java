@@ -22,6 +22,7 @@ public class CytoscapeWrapper {
 	
 	private EventBus eventBus;
 	private String style;
+	private boolean attachHandlers = true;
 	
 	public CytoscapeWrapper(EventBus eventBus, String style) {
 		this.eventBus = eventBus;
@@ -44,11 +45,7 @@ public class CytoscapeWrapper {
 	    var cy = $wnd.cy = $wnd.cytoscape(obj);
 	    
 	    //setup link node and edge selectors
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreContextSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
 	    
 	   	$wnd.cy.zoom(zoom);
 	    
@@ -61,12 +58,13 @@ public class CytoscapeWrapper {
 	 * @param style
 	 * @param layout
 	 */
-	public native void cytoscapeInit(String nodes, String edges, String layout, String container) /*-{
+	public native void cytoscapeInit(String nodes, String edges, String layout, String container, boolean addHandlers) /*-{
+		
+		this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::attachHandlers = addHandlers;
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
 		var zoom = $doc.zoom = 1;
-		
 		
 		var nodes = $wnd.JSON.parse(nodes);
 		var edges = $wnd.JSON.parse(edges);
@@ -80,11 +78,8 @@ public class CytoscapeWrapper {
 	    cy.add(edges);	    
 	    
 	   	//setup link node and edge selectors
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
-	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
-	   	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
-	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreContextSelected(*)();
+	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
+
 	   	
 	   	
 	   	$wnd.cy.zoom(zoom);
@@ -104,14 +99,19 @@ public class CytoscapeWrapper {
 	//add node to cytoscape
 	$wnd.cy.add(nodes);
 	
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreContextSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
 	
 	
 	}-*/;
+	
+	public void setupHandlers() {
+		if(!attachHandlers) return;
+		nodeSelected();
+		edgeSelected();
+		nodeHovered();
+		edgeHovered();
+		cytoscapeCoreContextSelected();
+	}
 	
 	/**
 	 * removes node of Id specified by passed in node Id as a string.
@@ -134,11 +134,7 @@ public class CytoscapeWrapper {
 	//add node to cytoscape
 	$wnd.cy.add(edges);
 	
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeSelected(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::nodeHovered(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::edgeHovered(*)();
-	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::cytoscapeCoreContextSelected(*)();
+	this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
 	
 	}-*/;
 	
