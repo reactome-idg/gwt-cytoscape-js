@@ -61,7 +61,7 @@ public class CytoscapeWrapper {
 	 * @param style
 	 * @param layout
 	 */
-	public native void cytoscapeInit(String nodes, String edges, String layout) /*-{
+	public native void cytoscapeInit(String nodes, String edges, String layout, String container) /*-{
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
@@ -72,7 +72,7 @@ public class CytoscapeWrapper {
 		var edges = $wnd.JSON.parse(edges);
 		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		
-	    obj.container = $doc.getElementById('cy');
+	    obj.container = $doc.getElementById(container);
 	    obj.elements = nodes;
 	    obj.style = styleJSON;
 	    obj.layout = { name: ''+layout+''};
