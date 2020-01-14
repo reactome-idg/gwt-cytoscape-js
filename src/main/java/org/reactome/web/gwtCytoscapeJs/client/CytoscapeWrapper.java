@@ -1,16 +1,5 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
-import org.reactome.web.gwtCytoscapeJs.events.CytoscapeCoreContextEvent;
-import org.reactome.web.gwtCytoscapeJs.events.CytoscapeCoreSelectedEvent;
-import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
-import org.reactome.web.gwtCytoscapeJs.events.EdgeContextSelectEvent;
-import org.reactome.web.gwtCytoscapeJs.events.EdgeHoveredEvent;
-import org.reactome.web.gwtCytoscapeJs.events.EdgeMouseOutEvent;
-import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
-import org.reactome.web.gwtCytoscapeJs.events.NodeContextSelectEvent;
-import org.reactome.web.gwtCytoscapeJs.events.NodeHoveredEvent;
-import org.reactome.web.gwtCytoscapeJs.events.NodeMouseOutEvent;
-
 import com.google.gwt.event.shared.EventBus;
 
 /**
@@ -20,12 +9,27 @@ import com.google.gwt.event.shared.EventBus;
  */
 public class CytoscapeWrapper {
 	
+	public interface Handler{
+		void onNodeClicked(String id, String name);
+		void onEdgeClicked(String id);
+		void onNodeHovered(String id, String name, int x, int y);
+		void onEdgeHovered(String id, int x, int y);
+		void onNodeMouseOut();
+		void onEdgeMouseOut();
+		void onCytoscapeCoreContextEvent(int x, int y);
+		void onCytoscapeCoreSelectedEvent();
+		void onEdgeContextSelectEvent(String id, int x, int y);
+		void onNodeContextSelectEvent(String id, String name, int x, int y);
+	}
+	
+	private Handler handler;
 	private EventBus eventBus;
 	private String style;
 	private boolean attachHandlers = true;
 	
-	public CytoscapeWrapper(EventBus eventBus, String style) {
+	public CytoscapeWrapper(EventBus eventBus, String style, Handler handler) {
 		this.eventBus = eventBus;
+		this.handler = handler;
 		this.style = style;
 	}
 	
@@ -472,7 +476,7 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */ 
 	private void fireNodeClickedEvent(String id, String name) { 
-		eventBus.fireEventFromSource(new NodeClickedEvent(id, name), this);
+		handler.onNodeClicked(id, name);
 	}
 	
 	/**
@@ -480,7 +484,7 @@ public class CytoscapeWrapper {
 	 * @param edge
 	 */
 	private void fireEdgeClickedEvent(String id) {
-		eventBus.fireEventFromSource(new EdgeClickedEvent(id), this);
+		handler.onEdgeClicked(id);
 	}
 	
 	/**
@@ -488,43 +492,43 @@ public class CytoscapeWrapper {
 	 * @param node
 	 */
 	private void fireNodeHoveredEvent(String id, String name, int x, int y) {
-		eventBus.fireEventFromSource(new NodeHoveredEvent(id, name, x, y), this);
+		handler.onNodeHovered(id, name, x, y);
 	}
 	
 	/**
 	 * fires event for when an edge is hovered
 	 */
 	private void fireEdgeHoveredEvent(String id, int x, int y) {
-		eventBus.fireEventFromSource(new EdgeHoveredEvent(id, x, y), this);
+		handler.onEdgeHovered(id, x, y);
 	}
 	
 	/**
 	 * Fires node mouse out event
 	 */
 	private void fireNodeMouseOutEvent() {
-		eventBus.fireEventFromSource(new NodeMouseOutEvent(), this);
+		handler.onNodeMouseOut();
 	}
 	
 	/**
 	 * Fires edge mouse out event
 	 */
 	private void fireEdgeMouseOutEvent() {
-		eventBus.fireEventFromSource(new EdgeMouseOutEvent(), this);
+		handler.onEdgeMouseOut();
 	}
 	
 	private void fireCytoscapeCoreContextEvent(int x, int y) {
-		eventBus.fireEventFromSource(new CytoscapeCoreContextEvent(x, y), this);
+		handler.onCytoscapeCoreContextEvent(x, y);
 	}
 	
 	private void fireCytoscapeCoreSelectedEvent() {
-		eventBus.fireEventFromSource(new CytoscapeCoreSelectedEvent(), this);
+		handler.onCytoscapeCoreSelectedEvent();
 	}
 	
 	private void fireEdgeContextEvent(String id, int x, int y) {
-		eventBus.fireEventFromSource(new EdgeContextSelectEvent(id, x, y), this);
+		handler.onEdgeContextSelectEvent(id, x, y);
 	}
 	
 	private void fireNodeContextEvent(String id, String name, int x, int y) {
-		eventBus.fireEventFromSource(new NodeContextSelectEvent(id, name, x, y), this);
+		handler.onNodeContextSelectEvent(id, name, x, y);
 	}
 }

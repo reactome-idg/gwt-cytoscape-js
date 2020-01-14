@@ -4,6 +4,7 @@ import org.reactome.web.gwtCytoscapeJs.events.EdgeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.events.NodeClickedEvent;
 import org.reactome.web.gwtCytoscapeJs.handlers.EdgeClickedHandler;
 import org.reactome.web.gwtCytoscapeJs.handlers.NodeClickedHandler;
+import org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper.Handler;
 import org.reactome.web.gwtCytoscapeJs.client.clientBundle.Resources;
 
 import com.google.gwt.core.client.GWT;
@@ -26,7 +27,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author brunsont
  *
  */
-public class CytoscapeViewer extends Composite{
+public class CytoscapeViewer extends Composite implements Handler{
 	private CytoscapeWrapper cy;
 	private EventBus eventBus;
 	
@@ -35,7 +36,7 @@ public class CytoscapeViewer extends Composite{
 	
 	public CytoscapeViewer(EventBus eventBus) {
 		this.eventBus = eventBus;
-		cy = new CytoscapeWrapper(eventBus, Resources.INSTANCE.cytoscapeStyle().getText());
+		cy = new CytoscapeWrapper(eventBus, Resources.INSTANCE.cytoscapeStyle().getText(), this);
 	
 		initialise();
 		//init handlers and button click events
@@ -97,6 +98,66 @@ public class CytoscapeViewer extends Composite{
 			}
 			
 		});
+	}
+
+	@Override
+	public void onNodeClicked(String id, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdgeClicked(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNodeHovered(String id, String name, int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdgeHovered(String id, int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNodeMouseOut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdgeMouseOut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCytoscapeCoreContextEvent(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCytoscapeCoreSelectedEvent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdgeContextSelectEvent(String id, int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNodeContextSelectEvent(String id, String name, int x, int y) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
