@@ -1,6 +1,5 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
-import com.google.gwt.event.shared.EventBus;
 
 /**
  * 
@@ -23,12 +22,9 @@ public class CytoscapeWrapper {
 	}
 	
 	private Handler handler;
-	private EventBus eventBus;
 	private String style;
-	private boolean attachHandlers = true;
 	
-	public CytoscapeWrapper(EventBus eventBus, String style, Handler handler) {
-		this.eventBus = eventBus;
+	public CytoscapeWrapper(String style, Handler handler) {
 		this.handler = handler;
 		this.style = style;
 	}
@@ -62,9 +58,8 @@ public class CytoscapeWrapper {
 	 * @param style
 	 * @param layout
 	 */
-	public native void cytoscapeInit(String nodes, String edges, String layout, String container, boolean addHandlers) /*-{
+	public native void cytoscapeInit(String nodes, String edges, String layout, String container) /*-{
 		
-		this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::attachHandlers = addHandlers;
 		
 		//create object to pass into cytoscape.js library.
 		var obj = new $wnd.Object();
@@ -83,13 +78,9 @@ public class CytoscapeWrapper {
 	    
 	   	//setup link node and edge selectors
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
-
-	   	
 	   	
 	   	$wnd.cy.zoom(zoom);
-	   	
-	   	
-	    
+
 	}-*/;
 	
 	/**
@@ -109,7 +100,6 @@ public class CytoscapeWrapper {
 	}-*/;
 	
 	public void setupHandlers() {
-		if(!attachHandlers) return;
 		nodeSelected();
 		edgeSelected();
 		nodeHovered();
@@ -423,6 +413,13 @@ public class CytoscapeWrapper {
 		.style({
 			'background-color':color,
 			'background-opacity':opacity
+		}).update();
+	}-*/;
+	
+	public native void recolorEdge(String edge, String color) /*-{
+		$wnd.cy.style().selector('edge#' + edge)
+		.style({
+			'line-color':color
 		}).update();
 	}-*/;
 	

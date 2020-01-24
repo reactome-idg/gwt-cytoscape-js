@@ -36,7 +36,7 @@ public class CytoscapeViewer extends Composite implements Handler{
 	
 	public CytoscapeViewer(EventBus eventBus) {
 		this.eventBus = eventBus;
-		cy = new CytoscapeWrapper(eventBus, Resources.INSTANCE.cytoscapeStyle().getText(), this);
+		cy = new CytoscapeWrapper(Resources.INSTANCE.cytoscapeStyle().getText(), this);
 	
 		initialise();
 		//init handlers and button click events
