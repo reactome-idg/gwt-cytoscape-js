@@ -467,6 +467,10 @@ public class CytoscapeWrapper {
 	public native void resetSelection()/*-{
 		$wnd.cy.nodes().unselect();
 	}-*/;
+
+	public native void resize()/*-{
+		$wnd.cy.resize();
+	}-*/;
 	
 	/**
 	 * Called by JSNI to fire node clicked event
