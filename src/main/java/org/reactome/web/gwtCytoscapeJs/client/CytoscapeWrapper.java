@@ -320,7 +320,6 @@ public class CytoscapeWrapper {
 			var x = evt.originalEvent.x;
 			var y = evt.originalEvent.y;
 			evt.target.select();
-			console.log(id + name);
 			that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireNodeContextEvent(*)(id, name, x, y);
 		});
 	}-*/;
@@ -458,6 +457,13 @@ public class CytoscapeWrapper {
 	public native void resetStyle()/*-{
 		var styleJSON = $wnd.JSON.parse(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::style);
 		$wnd.cy.style().fromJson(styleJSON).update();
+	}-*/;
+	
+	public native void resetNodeColor(String nodeColor) /*-{
+		$wnd.cy.style().selector('node')
+		.style({
+			'background-color':nodeColor
+		}).update();
 	}-*/;
 	
 	public native void setNodeFill(String color)/*-{
