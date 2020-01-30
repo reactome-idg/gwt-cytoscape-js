@@ -94,8 +94,6 @@ public class CytoscapeWrapper {
 	//add node to cytoscape
 	$wnd.cy.add(nodes);
 	
-	
-	
 	}-*/;
 	
 	/**
