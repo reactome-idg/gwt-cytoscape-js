@@ -143,11 +143,6 @@ public class CytoscapeWrapper {
 		$wnd.cy.elements('node').remove();
 	}-*/;
 	
-	public native void setCytoscapeLayout(String layout) /*-{
-		var layout = $wnd.cy.layout({name:''+layout+'', componentSpacing:50});
-		layout.run();
-	}-*/;
-	
 	/**
 	 * call to reset view of Cytoscape.js to position (0,0) and zoom 1
 	 */
@@ -308,9 +303,8 @@ public class CytoscapeWrapper {
 	 * The layout, "preset" can also be used if node locations are specified manually.
 	 * @param layoutString
 	 */
-	protected native void setLayout(String layoutString) /*-{
-		var layout = $wnd.cy.layout({name: '' + layoutString + ''});
-		layout.run();
+	public native void setCytoscapeLayout(String layoutString) /*-{
+		$wnd.cy.layout({name: '' + layoutString + '', animate:false}).run();
 	}-*/;
 	
 	/**
