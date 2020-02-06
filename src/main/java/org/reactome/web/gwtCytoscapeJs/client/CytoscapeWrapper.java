@@ -304,7 +304,7 @@ public class CytoscapeWrapper {
 	 * @param layoutString
 	 */
 	public native void setCytoscapeLayout(String layoutString) /*-{
-		$wnd.cy.layout({name: '' + layoutString + '', animate:false}).run();
+		$wnd.cy.layout({name: '' + layoutString + '', animate:true}).run();
 	}-*/;
 	
 	/**
@@ -379,12 +379,9 @@ public class CytoscapeWrapper {
 	 * @param color
 	 * @param opacity
 	 */
-	public native void highlightNode(String node, String color, String opacity) /*-{
-		$wnd.cy.style().selector('node#' + node)
-		.style({
-			'background-color':color,
-			'background-opacity':opacity
-		}).update();
+	public native void highlightNode(String node, String color) /*-{
+		$wnd.cy.$('#'+node).data('color', color);
+		$wnd.cy.$('#'+node).addClass('overlay');
 	}-*/;
 	
 	public native void recolorEdge(String edge, String color) /*-{
@@ -431,11 +428,8 @@ public class CytoscapeWrapper {
 		$wnd.cy.style().fromJson(styleJSON).update();
 	}-*/;
 	
-	public native void resetNodeColor(String nodeColor) /*-{
-		$wnd.cy.style().selector('node')
-		.style({
-			'background-color':nodeColor
-		}).update();
+	public native void resetNodeColor() /*-{
+		$wnd.cy.nodes().removeClass('overlay');
 	}-*/;
 	
 	public native void setNodeFill(String color)/*-{
