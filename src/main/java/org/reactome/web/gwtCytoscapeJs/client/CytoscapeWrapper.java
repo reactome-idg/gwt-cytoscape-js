@@ -475,6 +475,11 @@ public class CytoscapeWrapper {
 		$cyInstance.cy.style().selector('node').style({'background-color':color}).update();
 	}-*/;
 	
+	public native void selectNode(String id) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.$('#'+id+'').select();
+	}-*/;
+	
 	public native void resetSelection()/*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
 		$cyInstance.cy.nodes().unselect();
