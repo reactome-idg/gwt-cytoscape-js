@@ -289,14 +289,14 @@ public class CytoscapeWrapper {
 		});
 		
 		$cyInstance.cy.on('cxttap', function (evt){
-			if(evt.target == $wnd.cy){
+			if(evt.target == $cyInstance.cy){
 				var x = evt.originalEvent.x;
 				var y = evt.originalEvent.y;
 				that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireCytoscapeCoreContextEvent(*)(x,y);
 			}
 		});
 		$cyInstance.cy.on('tap', function(evt){
-			if(evt.target == $wnd.cy){
+			if(evt.target == $cyInstance.cy){
 				that.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::fireCytoscapeCoreSelectedEvent(*)();
 			}
 		});
@@ -481,7 +481,20 @@ public class CytoscapeWrapper {
 	 */
 	public native void selectNode(String id) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.nodes().unselect();
 		$cyInstance.cy.$('#'+id+'').select();
+	}-*/;
+	
+	public native void selectEdge(String id) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.edges().unselect();
+		$cyInstance.cy.$('#'+id+'').select();
+	}-*/;
+	
+	public native void deselectAll() /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.nodes().unselect();
+		$cyInstance.cy.edges().unselect();
 	}-*/;
 	
 	public native void resetSelection()/*-{
