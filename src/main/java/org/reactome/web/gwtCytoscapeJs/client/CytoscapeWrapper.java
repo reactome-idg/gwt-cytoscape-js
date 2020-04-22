@@ -485,6 +485,18 @@ public class CytoscapeWrapper {
 		$cyInstance.cy.$('#'+id+'').select();
 	}-*/;
 	
+	/**
+	 * Select multiple nodes based on passed in json array of ids
+	 * @param nodes
+	 */
+	public native void selectNodes(String nodes) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		var ids = $wnd.JSON.parse(nodes);
+		ids.forEach(function(id){
+			$cyInstance.cy.$('#'+id+'').select();
+		});
+	}-*/;
+	
 	public native void selectEdge(String id) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
 		$cyInstance.cy.edges().unselect();
