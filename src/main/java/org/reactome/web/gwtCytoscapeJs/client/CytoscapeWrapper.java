@@ -128,6 +128,15 @@ public class CytoscapeWrapper {
 		$cyInstance.cy.remove(node);
 	}-*/;
 	
+	public native void removeCytoscapeNodes(String nodes) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		var ids = $wnd.JSON.parse(nodes);
+		ids.forEach(function(id){
+			var node = $cyInstance.cy.$('#'+id)
+			$cyInstance.cy.remove(node);
+		});
+	}-*/;
+	
 	/**
 	 * adds an edge to Cytoscape.js
 	 * @param edge
