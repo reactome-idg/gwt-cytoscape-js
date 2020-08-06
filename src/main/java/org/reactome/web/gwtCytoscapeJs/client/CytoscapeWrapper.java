@@ -1,5 +1,6 @@
 package org.reactome.web.gwtCytoscapeJs.client;
 
+import java.util.List;
 
 /**
  * 
@@ -336,6 +337,16 @@ public class CytoscapeWrapper {
 	public native void setCytoscapeLayout(String layoutString) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
 		$cyInstance.cy.layout({name: '' + layoutString + '', animate:true}).run();
+	}-*/;
+	
+	/**
+	 * set layout on elements with a specific boolean dataAttribute = true;
+	 * @param layoutString
+	 * @param dataAttribute
+	 */
+	public native void setCytoscapeLayout(String layoutString, String dataAttribute) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.elements("[?"+dataAttribute+"]").layout({name: '' + layoutString + ''}).run();
 	}-*/;
 	
 	/**
