@@ -433,6 +433,12 @@ public class CytoscapeWrapper {
 		$cyInstance.cy.$('#'+node).addClass('overlay');
 	}-*/;
 	
+	public native void flagNode(String node, String color) /*-{
+		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
+		$cyInstance.cy.$('#'+node).data('flagColor', color);
+		$cyInstance.cy.$('#'+node).addClass('flag');
+	}-*/;
+	
 	public native void recolorEdge(String edge, String color) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
 		$cyInstance.cy.style().selector('edge#' + edge)
