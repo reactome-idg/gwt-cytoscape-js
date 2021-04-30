@@ -346,7 +346,8 @@ public class CytoscapeWrapper {
 	 */
 	public native void setCytoscapeLayout(String layoutString, String dataAttribute) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
-		$cyInstance.cy.elements("[?"+dataAttribute+"]").layout({name: '' + layoutString + '', fit: false, animate:false}).run();
+		var nodes = $cyInstance.cy.elements("["+dataAttribute+"]");
+		nodes.layout({name: '' + layoutString + '', animate:true, boundingBox:$cyInstance.cy.elements("[!"+dataAttribute+"]").boundingBox()}).run();
 	}-*/;
 	
 	/**
