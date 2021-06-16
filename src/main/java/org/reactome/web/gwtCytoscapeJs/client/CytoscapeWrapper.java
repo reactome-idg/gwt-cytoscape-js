@@ -51,6 +51,7 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
 	    
 	   	$cyInstance.cy.zoom(zoom);
+	   	$cyInstance.cy.panningEnabled(true);
 	    
 	}-*/;
 
@@ -85,6 +86,7 @@ public class CytoscapeWrapper {
 	    this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::setupHandlers(*)();
 	   	
 	   	$cyInstance.cy.zoom(zoom);
+	   	$cyInstance.cy.panningEnabled(true);
 
 	}-*/;
 	
@@ -203,19 +205,19 @@ public class CytoscapeWrapper {
 	 */
 	public native void panUp(int px) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
-		$cyInstance.cy.panBy({x:0, y:px});
+		$cyInstance.cy.panBy('y', 10);
 	}-*/;
 	public native void panDown(int px) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
-		$cyInstance.cy.panBy({x:0, y:-px});
+		$cyInstance.cy.panBy('y', -10);
 	}-*/;
 	public native void panLeft(int px) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
-		$cyInstance.cy.panBy({x:-px, y:0});
+		$cyInstance.cy.panBy('x', -10);
 	}-*/;
 	public native void panRight(int px) /*-{
 		$cyInstance = $doc.getElementById(this.@org.reactome.web.gwtCytoscapeJs.client.CytoscapeWrapper::container);
-		$cyInstance.cy.panBy({x:px, y:0});
+		$cyInstance.cy.panBy('x', 10);
 	}-*/;
 	
 	/**
